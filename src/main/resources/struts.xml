@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+        "http://struts.apache.org/dtds/struts-2.5.dtd">
+
+<struts>
+
+    <constant name="struts.enable.DynamicMethodInvocation" value="true"/>
+    <constant name="struts.action.excludePattern" value="/Lab2"/>
+    <constant name="struts.mapper.action.prefix.enabled" value="true" />
+
+    <package name="myPackage" extends="struts-default">
+
+        <default-action-ref name="index" />
+
+        <action name="index" class="grp1.IndexAction">
+            <result>/WEB-INF/jsp/index.jsp</result>
+        </action>
+
+        <action name="helloWorld" class="grp1.HelloWorldAction">
+            <result name="input">/jsp/index.jsp</result>
+            <result>/WEB-INF/jsp/helloWorld.jsp</result>
+        </action>
+
+        <action name="register" class="grp1.RegisterAction">
+            <result >/WEB-INF/jsp/register.jsp</result>
+            <result name="input">/WEB-INF/jsp/register.jsp</result>
+            <result name="success">/WEB-INF/jsp/register-success.jsp</result>
+            <result name="error">/WEB-INF/jsp/register-error.jsp</result>
+        </action>
+
+        <action name="registerProcessbb" class="grp1.RegisterAction">
+            <result name="success">/WEB-INF/jsp/register-success.jsp</result>
+            <result name="error">/WEB-INF/jsp/register-error.jsp</result>
+        </action>
+
+        <action name="login">
+            <result >/WEB-INF/jsp/login.jsp</result>
+        </action>
+
+        <action name="loginprocess" class="grp1.Login">
+            <result name="success">/WEB-INF/jsp/loginsuccess.jsp</result>
+            <result name="error" >/WEB-INF/jsp/loginerror.jsp</result>
+        </action>
+
+        <action name="logout" class="grp1.Login" method="logout">
+            <result name="success" >/WEB-INF/jsp/logoutsuccess.jsp</result>
+        </action>
+
+        <action name="profile" class="com.javatpoint.Profile">
+            <result name="success">/WEB-INF/jsp/profilesuccess.jsp</result>
+            <result name="error" >/WEB-INF/jsp/profileerror.jsp</result>
+        </action>
+
+        <action name="*News" class="grp1.NewsAction" method="{1}">
+            <result name="success" type="redirectAction">index</result>
+            <result name="input">/WEB-INF/jsp/newsForm.jsp</result>
+        </action>
+
+        <action name="updateNews" class="grp1.NewsAction" method="getUpdatingNewsItem">
+            <result >/WEB-INF/jsp/newsForm.jsp</result>
+        </action>
+
+        <action name="viewNews" class="grp1.NewsAction" method="getViewedNewsItem">
+            <result >/WEB-INF/jsp/newsView.jsp</result>
+        </action>
+
+    </package>
+
+</struts>
