@@ -86,6 +86,8 @@
                                         <li><a href="#">Sub-page 2</a></li>
                                     </ul></li>
                                     <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Cities <b class="caret"></b></a><ul class="dropdown-menu">
+                                        <s:url action="citiesIndex" var="citiesUrl"></s:url>
+                                        <li><a href="<s:property value="#citiesUrl"/>">Index</a></li>
                                         <li><a href="#">Add city</a></li>
                                     </ul></li>
                                 </ul>

@@ -17,6 +17,10 @@
             <result>/WEB-INF/jsp/index.jsp</result>
         </action>
 
+        <action name="citiesIndex" class="grp1.CityAction">
+            <result>/WEB-INF/jsp/citiesIndex.jsp</result>
+        </action>
+
         <action name="helloWorld" class="grp1.HelloWorldAction">
             <result name="input">/jsp/index.jsp</result>
             <result>/WEB-INF/jsp/helloWorld.jsp</result>
@@ -63,6 +67,19 @@
 
         <action name="viewNews" class="grp1.NewsAction" method="getViewedNewsItem">
             <result >/WEB-INF/jsp/newsView.jsp</result>
+        </action>
+
+        <action name="*City" class="grp1.CityAction" method="{1}">
+            <result name="success" type="redirectAction">citiesIndex</result>
+            <result name="input">/WEB-INF/jsp/cityForm.jsp</result>
+        </action>
+
+        <action name="updateCity" class="grp1.CityAction" method="getUpdatingCity">
+            <result >/WEB-INF/jsp/cityForm.jsp</result>
+        </action>
+
+        <action name="viewCity" class="grp1.CityAction" method="getViewedCity">
+            <result >/WEB-INF/jsp/cityView.jsp</result>
         </action>
 
     </package>

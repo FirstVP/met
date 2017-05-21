@@ -22,7 +22,7 @@ public class CityDao {
         this.connection = tester.getConnection();
     }
 
-    public List getAllNews() throws SQLException {
+    public List getAllCities() throws SQLException {
         ArrayList<City> list = new ArrayList<City>();
         PreparedStatement ps= connection.prepareStatement(
                 "select * from cities");
@@ -53,7 +53,7 @@ public class CityDao {
         return list;
     }
 
-    public City getNews(Integer id)
+    public City getCity(Integer id)
     {
         return null;
     }
@@ -69,6 +69,7 @@ public class CityDao {
             ps.setInt( 3, city.getRise() );
             ps.setInt( 4, city.getSquare() );
             ps.setInt( 5, city.getPopulation() );
+            ps.setInt( 6, city.getCityId() );
             result = ps.executeUpdate();
         }
         catch (Exception e)
@@ -115,7 +116,7 @@ public class CityDao {
     public int delete(Integer id) throws SQLException {
         int result = 0;
         PreparedStatement ps = connection.prepareStatement(
-                "delete from news where news_id=?");
+                "delete from cities where city_id=?");
         try
         {
             ps.setInt( 1, id );

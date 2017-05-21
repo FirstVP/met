@@ -4,6 +4,9 @@ package grp1.model;
  * Created by admin on 22.05.2017.
  */
 public class City {
+    public City() {
+    }
+
     private Integer cityId;
 
     public City(Integer cityId, Integer code, String name, Integer rise, Integer square, Integer population) {
