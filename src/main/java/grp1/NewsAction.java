@@ -78,6 +78,8 @@ public class NewsAction extends ActionSupport {
                 addFieldError ( "news.brief", "Brief is empty" );
             if ( isEmptyString ( news.getContent() ))
                 addFieldError ( "news.content", "Content is empty" );
+            if (news.getDate() == null)
+                addFieldError ( "weather.date", "Date is wrong" );
         }
 
     }

@@ -5,29 +5,26 @@
 
 <html>
 <head>
-    <title>Cities</title>
+    <title>Disasters</title>
 </head>
 <body>
 
-<s:url var="url" action="inputCity" />
-<a href="<s:property value="#url"/>" class="btn btn-primary" role="button">Add city</a>
+<s:url var="url" action="inputDisaster" />
+<a href="<s:property value="#url"/>" class="btn btn-primary" role="button">Add disaster</a>
 
 
 
 
 
 <div class="container">
-    <h2>Cities</h2>
-    <p>Cities info</p>
+    <h2>Disasters</h2>
+    <p>Disasters info</p>
     <div class="table-responsive">
         <table class="table">
             <thead>
             <tr>
-                <!--<th>Code</th>-->
                 <th>Name</th>
-                <th>Rise</th>
-                <th>Square</th>
-                <th>Population</th>
+                <th>Is global</th>
                 <th></th>
                 <th></th>
             </tr>
@@ -35,28 +32,25 @@
             <tbody>
 
 
-            <s:iterator value="cities" var="item" status="status">
+            <s:iterator value="disasters" var="item" status="status">
 
 
                 <tr>
-                    <!--<td><s:property value="code"/></td>-->
                     <td><s:property value="name"/></td>
-                    <td><s:property value="rise"/></td>
-                    <td><s:property value="square"/></td>
-                    <td><s:property value="population"/></td>
+                    <td><s:property value="global"/></td>
 
-                    <s:url action="updateCity" var="url">
-                        <s:param name="cityId" value="cityId"/>
+                    <s:url action="updateDisaster" var="url">
+                        <s:param name="disasterId" value="disasterId"/>
                     </s:url>
                     <td><a href="<s:property value="#url"/>" class="btn btn-success" role="button">Edit</a></td>
 
-                    <s:url action="deleteCity" var="url">
-                        <s:param name="city.cityId" value="cityId"/>
+                    <s:url action="deleteDisaster" var="url">
+                        <s:param name="disaster.disasterId" value="disasterId"/>
                     </s:url>
                     <td><a href="<s:property value="#url"/>" onclick="return confirm('Are you sure?')" class="btn btn-danger" role="button">Delete</a></td>
 
-                    <s:url action="viewCity" var="url">
-                        <s:param name="cityId" value="cityId"/>
+                    <s:url action="viewDisaster" var="url">
+                        <s:param name="disasterId" value="disasterId"/>
                     </s:url>
                     <td><a href="<s:property value="#url"/>" class="btn btn-default" role="button">More</a></td>
                 </tr>

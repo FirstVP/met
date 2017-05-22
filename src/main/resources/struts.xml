@@ -18,8 +18,15 @@
         </action>
 
         <action name="citiesIndex" class="grp1.CityAction">
+            <result name="input" type="redirectAction">citiesIndex</result>
             <result>/WEB-INF/jsp/citiesIndex.jsp</result>
         </action>
+
+        <action name="disastersIndex" class="grp1.DisasterAction">
+            <result name="input" type="redirectAction">disastersIndex</result>
+            <result>/WEB-INF/jsp/disastersIndex.jsp</result>
+        </action>
+
 
         <action name="helloWorld" class="grp1.HelloWorldAction">
             <result name="input">/jsp/index.jsp</result>
@@ -82,6 +89,20 @@
             <result >/WEB-INF/jsp/cityView.jsp</result>
         </action>
 
+        <action name="*Disaster" class="grp1.DisasterAction" method="{1}">
+            <result name="success" type="redirectAction">disastersIndex</result>
+            <result name="input">/WEB-INF/jsp/disasterForm.jsp</result>
+        </action>
+
+        <action name="updateDisaster" class="grp1.DisasterAction" method="getUpdatingDisaster">
+            <result >/WEB-INF/jsp/disasterForm.jsp</result>
+        </action>
+
+        <action name="viewDisaster" class="grp1.DisasterAction" method="getViewedDisaster">
+            <result >/WEB-INF/jsp/disasterView.jsp</result>
+        </action>
+
+
         <action name="*Weather" class="grp1.WeatherAction" method="{1}">
 
 
@@ -89,8 +110,6 @@
                 <param name="actionName">viewCity</param>
                 <param name="cityId">${weather.cityId}</param>
             </result>
-
-
 
             <result name="input">/WEB-INF/jsp/weatherForm.jsp</result>
         </action>

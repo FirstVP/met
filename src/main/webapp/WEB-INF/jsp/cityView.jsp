@@ -12,22 +12,43 @@
     <title>About city</title>
 </head>
 <body>
-<p><s:property value="%{city.code}"/></p>
-<p><s:property value="%{city.name}"/></p>
-<p><s:property value="%{city.rise}"/></p>
-<p><s:property value="%{city.square}"/></p>
-<p><s:property value="%{city.population}"/></p>
-<s:url action="updateCity" var="url">
-    <s:param name="cityId" value="cityId"/>
-</s:url>
-<a href="<s:property value="#url"/>" class="btn btn-success" role="button">Edit</a>
 
-<s:url action="deleteCity" var="url">
-    <s:param name="city.cityId" value="cityId"/>
-</s:url>
-<a href="<s:property value="#url"/>" onclick="return confirm('Are you sure?')" class="btn btn-danger" role="button">Delete</a>
+
+    <h2><s:property value="%{city.name}"/></h2>
+    <div class="panel-group">
+        <div class="panel panel-default">
+            <div class="panel-heading">Information
+                <s:url action="updateCity" var="url">
+                    <s:param name="cityId" value="cityId"/>
+                </s:url>
+                <a href="<s:property value="#url"/>" class="btn btn-success" role="button">Edit</a>
+
+                <s:url action="deleteCity" var="url">
+                    <s:param name="city.cityId" value="cityId"/>
+                </s:url>
+                <a href="<s:property value="#url"/>" onclick="return confirm('Are you sure?')" class="btn btn-danger" role="button">Delete</a>
+            </div>
+            <div class="panel-body">
+                <p>Rise: <s:property value="%{city.rise}"/> m</p>
+                <p>Square: <s:property value="%{city.square}"/> m^2</p>
+                <p>Population: <s:property value="%{city.population}"/></p>
+            </div>
+        </div>
+
+        <div class="panel panel-primary">
+            <div class="panel-heading">Humidity</div>
+            <div class="panel-body"> <img src="http://pogoda.by/mg/366/egrr_T<s:property value="%{city.code}"/>.gif" class="img-rounded img-responsive" border="1" ></div>
+        </div>
+
+        <div class="panel panel-info">
+            <div class="panel-heading">Wind</div>
+            <div class="panel-body"><img src="http://pogoda.by/mg/366/egrr_W<s:property value="%{city.code}"/>.gif" class="img-rounded img-responsive" border="1" ></div>
+        </div>
+
+    </div>
 
 <div class="container">
+
     <h2>Weather
         <s:url action="inputWeather" var="url">
             <s:param name="weather.cityId" value="cityId"/>

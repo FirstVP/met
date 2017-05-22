@@ -117,6 +117,8 @@ public class WeatherAction extends ActionSupport {
                 addFieldError ( "weather.wind", "Wind is wrong" );
             if ( isWrong(weather.getPressure()))
                 addFieldError ( "weather.pressure", "Pressure is wrong" );
+            if (weather.getDate() == null)
+                addFieldError ( "weather.date", "Date is wrong" );
         }
 
     }
