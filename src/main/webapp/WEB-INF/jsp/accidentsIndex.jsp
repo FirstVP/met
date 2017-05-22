@@ -8,10 +8,10 @@
     <title>Accidents</title>
 </head>
 <body>
-
+<s:if test='#session.role_id == 2'>
 <s:url var="url" action="inputAccident" />
 <a href="<s:property value="#url"/>" class="btn btn-primary" role="button">Add accident</a>
-
+</s:if>
 
 
 
@@ -42,7 +42,7 @@
                     <td><s:property value="city.name"/></td>
                     <td><s:property value="level"/></td>
                     <td><s:property value="date"/></td>
-
+                    <s:if test='#session.role_id == 2'>
                     <s:url action="updateAccident" var="url">
                         <s:param name="accidentId" value="accidentId"/>
                     </s:url>
@@ -52,7 +52,7 @@
                         <s:param name="accident.accidentId" value="accidentId"/>
                     </s:url>
                     <td><a href="<s:property value="#url"/>" onclick="return confirm('Are you sure?')" class="btn btn-danger" role="button">Delete</a></td>
-
+                    </s:if>
                     <s:url action="viewAccident" var="url">
                         <s:param name="accidentId" value="accidentId"/>
                     </s:url>

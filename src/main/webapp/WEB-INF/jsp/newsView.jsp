@@ -14,7 +14,7 @@
 </head>
 <body>
 <h1 align="center"><s:property value="%{news.title}"/>
-
+<s:if test='#session.role_id == 2'>
     <s:url action="updateNews" var="url">
         <s:param name="newsId" value="newsId"/>
     </s:url>
@@ -23,6 +23,7 @@
         <s:param name="news.newsId" value="newsId"/>
     </s:url>
     <a href="<s:property value="#url"/>" onclick="return confirm('Are you sure?')" class="btn btn-danger" role="button">Delete</a>
+    </s:if>
 </h1>
 <h3 align="center"><s:property value="%{news.date}"/></h3>
 <div class="container">

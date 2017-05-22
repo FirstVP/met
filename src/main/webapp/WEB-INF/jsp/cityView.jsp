@@ -18,6 +18,7 @@
     <div class="panel-group">
         <div class="panel panel-default">
             <div class="panel-heading">Information
+                <s:if test='#session.role_id == 2'>
                 <s:url action="updateCity" var="url">
                     <s:param name="cityId" value="cityId"/>
                 </s:url>
@@ -27,6 +28,7 @@
                     <s:param name="city.cityId" value="cityId"/>
                 </s:url>
                 <a href="<s:property value="#url"/>" onclick="return confirm('Are you sure?')" class="btn btn-danger" role="button">Delete</a>
+                    </s:if>
             </div>
             <div class="panel-body">
                 <p>Rise: <s:property value="%{city.rise}"/> m</p>
@@ -50,10 +52,12 @@
 <div class="container">
 
     <h2>Weather
+<s:if test='#session.role_id == 2'>
         <s:url action="inputWeather" var="url">
             <s:param name="weather.cityId" value="cityId"/>
         </s:url>
         <a href="<s:property value="#url"/>" class="btn btn-primary" role="button">Add weather</a></h2>
+    </s:if>
     <p>Weather info</p>
         <table class="table table-hover">
             <thead>
@@ -81,7 +85,7 @@
                     </td>
                     <td><s:property value="wind"/></td>
                     <td><s:property value="pressure"/></td>
-
+                    <s:if test='#session.role_id == 2'>
                     <s:url action="updateWeather" var="url">
                         <s:param name="weatherId" value="weatherId"/>
                     </s:url>
@@ -92,7 +96,7 @@
                         <s:param name="weather.cityId" value="cityId"/>
                     </s:url>
                     <td><a href="<s:property value="#url"/>" onclick="return confirm('Are you sure?')" class="btn btn-danger" role="button">Delete</a></td>
-
+                    </s:if>
 
 
 

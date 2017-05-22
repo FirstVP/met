@@ -8,10 +8,10 @@
     <title>Disasters</title>
 </head>
 <body>
-
+<s:if test='#session.role_id == 2'>
 <s:url var="url" action="inputDisaster" />
 <a href="<s:property value="#url"/>" class="btn btn-primary" role="button">Add disaster</a>
-
+    </s:if>
 
 
 
@@ -38,7 +38,7 @@
                 <tr>
                     <td><s:property value="name"/></td>
                     <td><s:property value="global"/></td>
-
+                    <s:if test='#session.role_id == 2'>
                     <s:url action="updateDisaster" var="url">
                         <s:param name="disasterId" value="disasterId"/>
                     </s:url>
@@ -48,10 +48,10 @@
                         <s:param name="disaster.disasterId" value="disasterId"/>
                     </s:url>
                     <td><a href="<s:property value="#url"/>" onclick="return confirm('Are you sure?')" class="btn btn-danger" role="button">Delete</a></td>
-
-                    <s:url action="viewDisaster" var="url">
+                    </s:if>
+                    <!--<s:url action="viewDisaster" var="url">
                         <s:param name="disasterId" value="disasterId"/>
-                    </s:url>
+                    </s:url>-->
                     <td><a href="<s:property value="#url"/>" class="btn btn-default" role="button">More</a></td>
                 </tr>
 

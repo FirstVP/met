@@ -18,7 +18,7 @@
             <div class="panel panel-primary">
                 <div class="panel-heading">
                     <h3 class="panel-title">Information
-
+                    <s:if test='#session.role_id == 2'>
                         <s:url action="updateAccident" var="url">
                             <s:param name="accidentId" value="accidentId"/>
                         </s:url>
@@ -28,6 +28,7 @@
                             <s:param name="accident.accidentId" value="accidentId"/>
                         </s:url>
                         <a href="<s:property value="#url"/>" onclick="return confirm('Are you sure?')" class="btn btn-danger" role="button">Delete</a>
+                        </s:if>
                     </h3>
                     <span class="pull-right">
                         <ul class="nav panel-tabs">
