@@ -25,8 +25,6 @@
             <tr>
                 <th>Name</th>
                 <th>Is global</th>
-                <th></th>
-                <th></th>
             </tr>
             </thead>
             <tbody>
@@ -51,8 +49,8 @@
                     </s:if>
                     <!--<s:url action="viewDisaster" var="url">
                         <s:param name="disasterId" value="disasterId"/>
-                    </s:url>-->
-                    <td><a href="<s:property value="#url"/>" class="btn btn-default" role="button">More</a></td>
+                    </s:url>
+                    <td><a href="<s:property value="#url"/>" class="btn btn-default" role="button">More</a></td>-->
                 </tr>
 
 

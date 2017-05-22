@@ -90,7 +90,7 @@
                                         <s:url action="disastersIndex" var="disastersUrl"></s:url>
                                         <li><a href="<s:property value="#disastersUrl"/>">Index</a></li>
                                         <li><a href="#">Doc</a>
-                                        </li>
+                                    </ul></li>
                                         <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Accidents <b class="caret"></b></a><ul class="dropdown-menu">
                                             <s:url action="accidentsIndex" var="accidentsUrl"></s:url>
                                             <li><a href="<s:property value="#accidentsUrl"/>">Index</a></li>
