@@ -19,6 +19,8 @@
 </s:if>
 
 
+
+
 		<s:iterator value="news" var="item" status="status">
 			<h2><s:property value="date"/>&nbsp;<s:property value="title"/>
 

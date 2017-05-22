@@ -136,6 +136,10 @@
             <result >/WEB-INF/jsp/weatherForm.jsp</result>
         </action>
 
+        <action name="viewPDF" class="grp1.docs.pdf.ViewPDFAction">
+            <!-- NO CONFIGURATION FOR RESULT NONE -->
+        </action>
+
     </package>
 
 </struts>

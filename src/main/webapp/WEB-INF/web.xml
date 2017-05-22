@@ -78,7 +78,10 @@
 
 
 
-
+    <mime-mapping>
+        <extension>pdf</extension>
+        <mime-type>application/pdf</mime-type>
+    </mime-mapping>
 
     <!-- Welcome file lists -->
     <welcome-file-list>

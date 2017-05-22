@@ -32,6 +32,7 @@
                 <th>Population</th>
                 <th></th>
                 <th></th>
+                <th></th>
             </tr>
             </thead>
             <tbody>
@@ -42,7 +43,7 @@
 
                 <tr>
                     <s:if test='#session.role_id == 2'>
-                    <s:property value="code"/>
+                        <td><s:property value="code"/></td>
                     </s:if>
                     <td><s:property value="name"/></td>
                     <td><s:property value="rise"/></td>
