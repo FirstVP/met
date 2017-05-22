@@ -27,6 +27,11 @@
             <result>/WEB-INF/jsp/disastersIndex.jsp</result>
         </action>
 
+        <action name="accidentsIndex" class="grp1.AccidentAction">
+            <result name="input" type="redirectAction">accidentsIndex</result>
+            <result>/WEB-INF/jsp/accidentsIndex.jsp</result>
+        </action>
+
 
         <action name="helloWorld" class="grp1.HelloWorldAction">
             <result name="input">/jsp/index.jsp</result>
@@ -100,6 +105,19 @@
 
         <action name="viewDisaster" class="grp1.DisasterAction" method="getViewedDisaster">
             <result >/WEB-INF/jsp/disasterView.jsp</result>
+        </action>
+
+        <action name="*Accident" class="grp1.AccidentAction" method="{1}">
+            <result name="success" type="redirectAction">accidentsIndex</result>
+            <result name="input">/WEB-INF/jsp/accidentForm.jsp</result>
+        </action>
+
+        <action name="updateAccident" class="grp1.AccidentAction" method="getUpdatingAccident">
+            <result >/WEB-INF/jsp/accidentForm.jsp</result>
+        </action>
+
+        <action name="viewAccident" class="grp1.AccidentAction" method="getViewedAccident">
+            <result >/WEB-INF/jsp/accidentView.jsp</result>
         </action>
 
 
