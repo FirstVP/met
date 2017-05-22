@@ -13,7 +13,7 @@
     <schema id="7" parent="1" name="sys"/>
     <schema id="8" parent="1" name="world"/>
     <schema id="9" parent="1" name="librarydb"/>
-    <table id="10" parent="2" name="accident"/>
+    <table id="10" parent="2" name="accidents"/>
     <table id="11" parent="2" name="cities"/>
     <table id="12" parent="2" name="disasters"/>
     <table id="13" parent="2" name="news"/>

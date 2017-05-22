@@ -90,9 +90,13 @@
                                     <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Disasters <b class="caret"></b></a><ul class="dropdown-menu">
                                         <s:url action="disastersIndex" var="disastersUrl"></s:url>
                                         <li><a href="<s:property value="#disastersUrl"/>">Index</a></li>
-                                        <li><a href="#">Add disaster</a></li>
+                                        <li><a href="#">Add disaster</a>
                                         </li>
-
+                                        <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Accidents <b class="caret"></b></a><ul class="dropdown-menu">
+                                            <s:url action="accidentsIndex" var="accidentsUrl"></s:url>
+                                            <li><a href="<s:property value="#accidentsUrl"/>">Index</a></li>
+                                            <li><a href="#">Add accident</a></li>
+                                        </ul></li>
 
 
 

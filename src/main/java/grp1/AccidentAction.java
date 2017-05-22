@@ -138,6 +138,31 @@ public class AccidentAction extends ActionSupport {
         return SUCCESS;
     }
 
+    public String getViewedAccident() throws SQLException {
+        cityDao = new CityDao();
+        cities = cityDao.getAllCities();
+        disasterDao = new DisasterDao();
+        disasters = disasterDao.getAllDisasters();
+        accidentDao = new AccidentDao();
+        accident = accidentDao.getAccidentById(accidentId);
+            for (Disaster disasterItem: disasters)
+            {
+                if (accident.getDisasterId() == disasterItem.getDisasterId()) {
+                    accident.setDisaster(disasterItem);
+                    break;
+                }
+            }
+            for (City cityItem: cities)
+            {
+                if (accident.getCityId() == cityItem.getCityId()) {
+                    accident.setCity(cityItem);
+                    break;
+                }
+            }
+        return SUCCESS;
+    }
+
+
     @SkipValidation
     public String delete() throws SQLException {
         accidentDao.delete(accident.getAccidentId());
