@@ -13,14 +13,7 @@
 <a href="<s:property value="#url"/>" class="btn btn-primary" role="button">Add city</a>
 
 
-<s:iterator value="weathers" var="item" status="status">
 
-        <p><s:property value="date"/></p>
-    <p><s:property value="type.name"/></p>
-
-
-
-</s:iterator>
 
 
 <div class="container">
@@ -61,6 +54,11 @@
                         <s:param name="city.cityId" value="cityId"/>
                     </s:url>
                     <td><a href="<s:property value="#url"/>" onclick="return confirm('Are you sure?')" class="btn btn-danger" role="button">Delete</a></td>
+
+                    <s:url action="viewCity" var="url">
+                        <s:param name="cityId" value="cityId"/>
+                    </s:url>
+                    <td><a href="<s:property value="#url"/>" class="btn btn-default" role="button">More</a></td>
                 </tr>
 
 

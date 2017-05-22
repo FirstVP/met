@@ -82,6 +82,23 @@
             <result >/WEB-INF/jsp/cityView.jsp</result>
         </action>
 
+        <action name="*Weather" class="grp1.WeatherAction" method="{1}">
+
+
+            <result name="success" type="redirectAction">
+                <param name="actionName">viewCity</param>
+                <param name="cityId">${weather.cityId}</param>
+            </result>
+
+
+
+            <result name="input">/WEB-INF/jsp/weatherForm.jsp</result>
+        </action>
+
+        <action name="updateWeather" class="grp1.WeatherAction" method="getUpdatingWeather">
+            <result >/WEB-INF/jsp/weatherForm.jsp</result>
+        </action>
+
     </package>
 
 </struts>

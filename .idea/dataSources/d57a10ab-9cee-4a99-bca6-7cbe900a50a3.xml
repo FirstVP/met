@@ -220,6 +220,8 @@
       <RefSchemaName>weatherdb</RefSchemaName>
       <RefTableName>cities</RefTableName>
       <RefColNames>city_id</RefColNames>
+      <OnUpdate>update</OnUpdate>
+      <OnDelete>delete</OnDelete>
     </foreign-key>
   </database-model>
 </dataSource>

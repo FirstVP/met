@@ -54,27 +54,6 @@ public class CityAction extends ActionSupport {
 
     public String execute() throws Exception {
         cities = cityDao.getAllCities();
-        List <Weather> list = weatherDao.getAllWeathers();
-        types = typeDao.getAllTypes();
-        weathers = new ArrayList<Weather>();
-        for (Weather weatherItem: list)
-        {
-            if (weatherItem.getCityId() == cities.get(1).getCityId())
-            {
-                weathers.add(weatherItem);
-
-                for (Type typeItem: types)
-                {
-                    if (weatherItem.getTypeId() == typeItem.getTypeId())
-                    {
-                        weatherItem.setType(typeItem);
-                        break;
-                    }
-                }
-
-            }
-
-        }
         return SUCCESS;
     }
 
@@ -93,14 +72,35 @@ public class CityAction extends ActionSupport {
 
 
     public String getUpdatingCity() throws SQLException {
-        CityDao newsDao = new CityDao();
-        city = newsDao.getCityById(cityId);
+        CityDao cityDao = new CityDao();
+        city = cityDao.getCityById(cityId);
         return SUCCESS;
     }
 
     public String getViewedCity() throws SQLException {
-        CityDao newsDao = new CityDao();
-        city = newsDao.getCityById(cityId);
+        CityDao cityDao = new CityDao();
+        city = cityDao.getCityById(cityId);
+        List <Weather> list = weatherDao.getAllWeathers();
+        types = typeDao.getAllTypes();
+        weathers = new ArrayList<Weather>();
+        for (Weather weatherItem: list)
+        {
+            if (weatherItem.getCityId() == city.getCityId())
+            {
+                weathers.add(weatherItem);
+
+                for (Type typeItem: types)
+                {
+                    if (weatherItem.getTypeId() == typeItem.getTypeId())
+                    {
+                        weatherItem.setType(typeItem);
+                        break;
+                    }
+                }
+
+            }
+
+        }
         return SUCCESS;
     }
 
