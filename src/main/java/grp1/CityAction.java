@@ -2,10 +2,15 @@ package grp1;
 
 import com.opensymphony.xwork2.ActionSupport;
 import grp1.dao.CityDao;
+import grp1.dao.TypeDao;
+import grp1.dao.WeatherDao;
 import grp1.model.City;
+import grp1.model.Type;
+import grp1.model.Weather;
 import org.apache.struts2.interceptor.validation.SkipValidation;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -13,7 +18,8 @@ import java.util.List;
  */
 public class CityAction extends ActionSupport {
     private CityDao cityDao = new CityDao();
-
+    private WeatherDao weatherDao = new WeatherDao();
+    private TypeDao typeDao = new TypeDao();
     public List<City> getCities() {
         return cities;
     }
@@ -39,8 +45,36 @@ public class CityAction extends ActionSupport {
 
     private City city;
 
+    public List<Weather> getWeathers() {
+        return weathers;
+    }
+
+    private List<Weather> weathers;
+    private List<Type> types;
+
     public String execute() throws Exception {
         cities = cityDao.getAllCities();
+        List <Weather> list = weatherDao.getAllWeathers();
+        types = typeDao.getAllTypes();
+        weathers = new ArrayList<Weather>();
+        for (Weather weatherItem: list)
+        {
+            if (weatherItem.getCityId() == cities.get(1).getCityId())
+            {
+                weathers.add(weatherItem);
+
+                for (Type typeItem: types)
+                {
+                    if (weatherItem.getTypeId() == typeItem.getTypeId())
+                    {
+                        weatherItem.setType(typeItem);
+                        break;
+                    }
+                }
+
+            }
+
+        }
         return SUCCESS;
     }
 

@@ -32,7 +32,7 @@
     </div >
 
     <s:submit theme="simple" class="btn btn-primary" value="Save"/>
-    <s:submit theme="simple" class="btn btn-default" value="Cancel" action="cityIndex"/>
+    <s:submit theme="simple" class="btn btn-default" value="Cancel" action="citiesIndex"/>
 
 
 </s:form>

@@ -13,6 +13,15 @@
 <a href="<s:property value="#url"/>" class="btn btn-primary" role="button">Add city</a>
 
 
+<s:iterator value="weathers" var="item" status="status">
+
+        <p><s:property value="date"/></p>
+    <p><s:property value="type.name"/></p>
+
+
+
+</s:iterator>
+
 
 <div class="container">
     <h2>Cities</h2>
