@@ -15,19 +15,37 @@
  */
 package grp1;
 
+import com.sun.org.apache.xpath.internal.operations.Bool;
 import junit.framework.TestCase;
 
 import com.opensymphony.xwork2.Action;
 
 /**
- * 
+ *
  */
-public class HelloWorldActionTest extends TestCase {
-    
-    public void testHelloWorldAction() throws Exception {
-        HelloWorldAction action = new HelloWorldAction();
+public class CitiesActionTest extends TestCase {
+
+    public void testIndex() throws Exception {
+        IndexAction action = new IndexAction();
         String result = action.execute();
         assertEquals(Action.SUCCESS, result);
     }
-}
 
+    public void testCancel() throws Exception {
+        CityAction action = new CityAction();
+        String result = action.cancel();
+        assertEquals(Action.SUCCESS, result);
+    }
+
+    public void testIsWrongFalse() throws Exception {
+        CityAction action = new CityAction();
+        Boolean result = action.isWrong(10);
+        assertEquals(Boolean.FALSE, result);
+    }
+
+    public void testIsWrongTrue() throws Exception {
+        CityAction action = new CityAction();
+        Boolean result = action.isWrong(-10);
+        assertEquals(Boolean.TRUE, result);
+    }
+}

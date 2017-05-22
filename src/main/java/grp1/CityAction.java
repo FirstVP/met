@@ -115,7 +115,7 @@ public class CityAction extends ActionSupport {
         return value == null || "".equals ( value.trim () );
     }
 
-    private boolean isWrong (Integer i)
+    public boolean isWrong (Integer i)
     {
         if (i == null)
             return  true;
