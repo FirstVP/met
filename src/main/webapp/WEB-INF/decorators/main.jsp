@@ -95,7 +95,10 @@
                                         </s:url>
                                         <li><a href="<s:property value="#url"/>">Get cities (XLS)</a></li>
 
-
+                                        <s:url var="url" action="viewCSV">
+                                            <s:param name="type">Cities</s:param>
+                                        </s:url>
+                                        <li><a href="<s:property value="#url"/>">Get cities (CSV)</a></li>
                                     </ul></li>
                                     <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Disasters <b class="caret"></b></a><ul class="dropdown-menu">
                                         <s:url action="disastersIndex" var="disastersUrl"></s:url>

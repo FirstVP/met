@@ -16,5 +16,5 @@ public abstract class DocumentModel {
 
     public abstract void buildXls(Workbook workbook) throws Exception;
 
-    public abstract void buildCsv(ICsvBeanWriter writer) throws IOException;
+    public abstract void buildCsv(ICsvBeanWriter writer) throws IOException, SQLException;
 }

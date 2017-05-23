@@ -144,6 +144,10 @@
             <!-- NO CONFIGURATION FOR RESULT NONE -->
         </action>
 
+        <action name="viewCSV" class="grp1.docs.csv.ViewCSVAction">
+            <!-- NO CONFIGURATION FOR RESULT NONE -->
+        </action>
+
     </package>
 
 </struts>

@@ -10,6 +10,7 @@ import grp1.model.City;
 import org.apache.poi.hssf.util.HSSFColor;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.ss.util.CellRangeAddress;
+import org.supercsv.exception.SuperCsvException;
 import org.supercsv.io.ICsvBeanWriter;
 
 import java.io.IOException;
@@ -160,7 +161,65 @@ public class CityDocumentModel extends DocumentModel {
     }
 
     @Override
-    public void buildCsv(ICsvBeanWriter writer) throws IOException {
+    public void buildCsv(ICsvBeanWriter writer) throws IOException, SQLException {
+        initialize();
+        String[] header = {"Name", "Rise", "Square", "Population"};
+        writer.writeHeader(header);
+        for (City city : cities) {
+            try {
+                writer.write(new CityBean(city.getName(), city.getRise(), city.getSquare(), city.getPopulation()), header);
+            } catch (SuperCsvException exception) {
+                System.out.println(exception.toString());
+            }
+        }
+    }
 
+    public class CityBean {
+        public CityBean() {
+        }
+
+        public CityBean(String name, Integer rise, Integer square, Integer population) {
+            this.name = name;
+            this.rise = rise;
+            this.square = square;
+            this.population = population;
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        public void setName(String name) {
+            this.name = name;
+        }
+
+        public Integer getRise() {
+            return rise;
+        }
+
+        public void setRise(Integer rise) {
+            this.rise = rise;
+        }
+
+        public Integer getSquare() {
+            return square;
+        }
+
+        public void setSquare(Integer square) {
+            this.square = square;
+        }
+
+        public Integer getPopulation() {
+            return population;
+        }
+
+        public void setPopulation(Integer population) {
+            this.population = population;
+        }
+
+        private String name;
+        private Integer rise;
+        private Integer square;
+        private Integer population;
     }
 }
