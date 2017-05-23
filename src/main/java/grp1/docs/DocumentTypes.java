@@ -17,7 +17,7 @@ public class DocumentTypes {
 
     static
     {
-        types.put("cities", new CityDocumentModel());
+        types.put("Cities", new CityDocumentModel());
     }
 
 

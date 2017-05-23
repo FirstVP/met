@@ -1,12 +1,15 @@
 package grp1.docs.model;
 
 import com.itextpdf.text.*;
+import com.itextpdf.text.Font;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import grp1.dao.CityDao;
 import grp1.docs.DocumentModel;
 import grp1.model.City;
-import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.hssf.util.HSSFColor;
+import org.apache.poi.ss.usermodel.*;
+import org.apache.poi.ss.util.CellRangeAddress;
 import org.supercsv.io.ICsvBeanWriter;
 
 import java.io.IOException;
@@ -86,7 +89,74 @@ public class CityDocumentModel extends DocumentModel {
 
     @Override
     public void buildXls(Workbook workbook) throws Exception {
+        initialize();
+        Sheet sheet = workbook.createSheet("Cities");
+        //setDefaultColumnWidth(60);
 
+        CellStyle style = workbook.createCellStyle();
+        org.apache.poi.ss.usermodel.Font font = workbook.createFont();
+        font.setFontName("Arial");
+        style.setFillForegroundColor(HSSFColor.GREY_40_PERCENT.index);
+        style.setFillPattern(FillPatternType.SOLID_FOREGROUND);
+        style.setBorderBottom(BorderStyle.MEDIUM);
+        font.setBold(true);
+        font.setColor(HSSFColor.WHITE.index);
+        style.setFont(font);
+        style.setWrapText(true);
+
+
+        CellStyle headerStyle = workbook.createCellStyle();
+        org.apache.poi.ss.usermodel.Font fontS = workbook.createFont();
+        font.setFontName("Arial");
+        font.setBold(true);
+        headerStyle.setBorderBottom(BorderStyle.MEDIUM);
+        headerStyle.setFont(fontS);
+        headerStyle.setWrapText(true);
+        Row headerTitle = sheet.createRow(0);
+        headerTitle.createCell(0).setCellValue("Cities");;
+        headerTitle.getCell(0).setCellStyle(headerStyle);
+
+        sheet.addMergedRegion(new CellRangeAddress(0, 0, 0, 1));
+
+        Row header = sheet.createRow(1);
+        header.createCell(0).setCellValue("Name");
+        header.getCell(0).setCellStyle(style);
+        header.createCell(1).setCellValue("Rise");
+        header.getCell(1).setCellStyle(style);
+        header.createCell(2).setCellValue("Square");
+        header.getCell(2).setCellStyle(style);
+        header.createCell(3).setCellValue("Population");
+        header.getCell(3).setCellStyle(style);
+
+        int rowCount = 2;
+
+        CellStyle otherCellStyle = workbook.createCellStyle();
+        otherCellStyle.setBorderBottom(BorderStyle.MEDIUM);
+        otherCellStyle.setWrapText(true);
+
+        for (City city : cities) {
+            Row commentRow = sheet.createRow(rowCount++);
+            commentRow.createCell(0).setCellValue(city.getName());
+            commentRow.getCell(0).setCellStyle(otherCellStyle);
+            int columnIndex = commentRow.getCell(0).getColumnIndex();
+
+            sheet.autoSizeColumn(columnIndex);
+            commentRow.createCell(1).setCellValue(city.getRise());
+            commentRow.getCell(1).setCellStyle(otherCellStyle);
+            columnIndex = commentRow.getCell(1).getColumnIndex();
+            sheet.autoSizeColumn(columnIndex);
+
+            commentRow.createCell(2).setCellValue(city.getSquare());
+            commentRow.getCell(2).setCellStyle(otherCellStyle);
+            columnIndex = commentRow.getCell(2).getColumnIndex();
+            sheet.autoSizeColumn(columnIndex);
+
+            commentRow.createCell(3).setCellValue(city.getPopulation());
+            commentRow.getCell(3).setCellStyle(otherCellStyle);
+            columnIndex = commentRow.getCell(3).getColumnIndex();
+            sheet.autoSizeColumn(columnIndex);
+
+        }
     }
 
     @Override

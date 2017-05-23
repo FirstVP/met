@@ -84,11 +84,18 @@
                                     <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Cities <b class="caret"></b></a><ul class="dropdown-menu">
                                         <s:url action="citiesIndex" var="citiesUrl"></s:url>
                                         <li><a href="<s:property value="#citiesUrl"/>">Index</a></li>
-                                        <s:url var="url" action="viewPDF">
-                                            <s:param name="type">cities</s:param>
-                                        </s:url>
 
+                                        <s:url var="url" action="viewPDF">
+                                            <s:param name="type">Cities</s:param>
+                                        </s:url>
                                         <li><a href="<s:property value="#url"/>">Get cities (PDF)</a></li>
+
+                                        <s:url var="url" action="viewXLS">
+                                            <s:param name="type">Cities</s:param>
+                                        </s:url>
+                                        <li><a href="<s:property value="#url"/>">Get cities (XLS)</a></li>
+
+
                                     </ul></li>
                                     <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Disasters <b class="caret"></b></a><ul class="dropdown-menu">
                                         <s:url action="disastersIndex" var="disastersUrl"></s:url>

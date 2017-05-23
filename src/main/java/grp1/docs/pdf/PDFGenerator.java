@@ -69,7 +69,7 @@ public class PDFGenerator {
         creteEmptyLine(preface, 1);
         preface.add(new Paragraph("PDF Report", TIME_ROMAN));
         creteEmptyLine(preface, 1);
-
+        document.add(preface);
     }
 
     private static void creteEmptyLine(Paragraph paragraph, int number) {

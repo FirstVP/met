@@ -140,6 +140,10 @@
             <!-- NO CONFIGURATION FOR RESULT NONE -->
         </action>
 
+        <action name="viewXLS" class="grp1.docs.xls.ViewXLSAction">
+            <!-- NO CONFIGURATION FOR RESULT NONE -->
+        </action>
+
     </package>
 
 </struts>
