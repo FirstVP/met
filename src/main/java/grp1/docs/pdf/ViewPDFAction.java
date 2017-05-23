@@ -36,10 +36,21 @@ public class ViewPDFAction extends ActionSupport
 
     private String type;
 
+
+    public Boolean getHasProtection() {
+        return hasProtection;
+    }
+
+    public void setHasProtection(Boolean hasProtection) {
+        this.hasProtection = hasProtection;
+    }
+
+    private Boolean hasProtection;
+
     @Override
     public String execute() throws Exception {
         DocumentModel model = DocumentTypes.getTypes().get(type);
-        ByteArrayOutputStream baosPDF = new PDFGenerator().generatePDF(model);
+        ByteArrayOutputStream baosPDF = new PDFGenerator().generatePDF(model, hasProtection);
         String filename = type+".pdf";
 
         response.setContentType("application/pdf");

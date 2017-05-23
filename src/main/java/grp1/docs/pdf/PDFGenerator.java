@@ -14,12 +14,13 @@ public class PDFGenerator {
             Font.BOLD);
     private static Font TIME_ROMAN_SMALL = new Font(
             Font.FontFamily.TIMES_ROMAN, 12, Font.BOLD);
-    public ByteArrayOutputStream generatePDF(DocumentModel model) throws DocumentException, IOException {
+    public ByteArrayOutputStream generatePDF(DocumentModel model, Boolean isProtected) throws DocumentException, IOException {
 
         Document doc = new Document();
         ByteArrayOutputStream baosPDF = new ByteArrayOutputStream();
         PdfWriter pdfWriter = PdfWriter.getInstance(doc, baosPDF);
-
+        if (isProtected)
+            pdfWriter.setEncryption(null, null,  ~(PdfWriter.ALLOW_COPY), PdfWriter.STANDARD_ENCRYPTION_128);
 
         try {
             doc.open();

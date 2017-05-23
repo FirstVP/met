@@ -85,10 +85,17 @@
                                         <s:url action="citiesIndex" var="citiesUrl"></s:url>
                                         <li><a href="<s:property value="#citiesUrl"/>">Index</a></li>
 
-                                        <s:url var="url" action="viewPDF">
+                                        <s:url var="url" action="viewPDF" escapeAmp="false">
                                             <s:param name="type">Cities</s:param>
+                                            <s:param name="hasProtection">false</s:param>
                                         </s:url>
                                         <li><a href="<s:property value="#url"/>">Get cities (PDF)</a></li>
+
+                                        <s:url var="url" action="viewPDF" escapeAmp="false">
+                                            <s:param name="type">Cities</s:param>
+                                            <s:param name="hasProtection">true</s:param>
+                                        </s:url>
+                                        <li><a href="<s:property value="#url"/>">Get cities (Protected PDF)</a></li>
 
                                         <s:url var="url" action="viewXLS">
                                             <s:param name="type">Cities</s:param>
