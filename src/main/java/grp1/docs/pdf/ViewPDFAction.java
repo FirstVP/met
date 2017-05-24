@@ -43,19 +43,8 @@ public class ViewPDFAction extends ActionSupport
 
     @Override
     public String execute() throws Exception {
-        DocumentModel model = null;
-        String[] splited = type.split("\\s+");
-        if (splited[0].equals("CityWeather"))
-        {
-            ServletContext context = ServletActionContext.getServletContext();
-            model = new WeatherDocumentModel(DocumentHelper.tryParse(splited[1]), context);
-            type = splited[0];
-        }
-        else
-        {
-            model = DocumentTypes.getTypes().get(type);
-        }
-
+        ServletContext context = ServletActionContext.getServletContext();
+        DocumentModel model = DocumentHelper.getDocumentModel(type, context);
         ByteArrayOutputStream baosPDF = new PDFGenerator().generatePDF(model, hasProtection);
         String filename = type+".pdf";
 

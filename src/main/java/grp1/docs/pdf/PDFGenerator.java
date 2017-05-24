@@ -19,6 +19,8 @@ public class PDFGenerator {
         Document doc = new Document();
         ByteArrayOutputStream baosPDF = new ByteArrayOutputStream();
         PdfWriter pdfWriter = PdfWriter.getInstance(doc, baosPDF);
+        if (isProtected == null)
+            isProtected = false;
         if (isProtected)
             pdfWriter.setEncryption(null, null,  ~(PdfWriter.ALLOW_COPY), PdfWriter.STANDARD_ENCRYPTION_128);
 
@@ -27,7 +29,8 @@ public class PDFGenerator {
             addMetaData(doc);
             addFormBlank(pdfWriter);
 
-            model.buildPdf(doc);
+            if (model != null)
+                model.buildPdf(doc);
 
         } catch(DocumentException de) {
             baosPDF.reset();

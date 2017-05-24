@@ -5,11 +5,11 @@ package grp1.docs.xls;
  */
 
 import com.opensymphony.xwork2.ActionSupport;
-import grp1.docs.DocumentModel;
-import grp1.docs.DocumentTypes;
+import grp1.docs.*;
 import grp1.docs.pdf.PDFGenerator;
 import org.apache.struts2.interceptor.ServletResponseAware;
 
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletResponse;
 import java.io.ByteArrayOutputStream;
 
@@ -51,7 +51,8 @@ public class ViewXLSAction extends ActionSupport
 
     @Override
     public String execute() throws Exception {
-        DocumentModel model = DocumentTypes.getTypes().get(type);
+        ServletContext context = ServletActionContext.getServletContext();
+        DocumentModel model = DocumentHelper.getDocumentModel(type, context);
         ByteArrayOutputStream baosXLS = new XLSGenerator().generateXLS(model);
         String filename = type+".xls";
 

@@ -12,7 +12,10 @@ import grp1.docs.pdf.PDFGenerator;
 import grp1.model.City;
 import grp1.model.Type;
 import grp1.model.Weather;
-import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.hssf.util.HSSFColor;
+import org.apache.poi.ss.usermodel.*;
+import org.apache.poi.ss.util.CellRangeAddress;
+import org.supercsv.exception.SuperCsvException;
 import org.supercsv.io.ICsvBeanWriter;
 
 import javax.imageio.ImageIO;
@@ -161,11 +164,151 @@ public class WeatherDocumentModel extends DocumentModel {
 
     @Override
     public void buildXls(Workbook workbook) throws Exception {
+        initialize(null);
+        Sheet sheet = workbook.createSheet("WeatherForecast");
 
+        CellStyle style = workbook.createCellStyle();
+        org.apache.poi.ss.usermodel.Font font = workbook.createFont();
+        font.setFontName("Arial");
+        style.setFillForegroundColor(HSSFColor.GREY_40_PERCENT.index);
+        style.setFillPattern(FillPatternType.SOLID_FOREGROUND);
+        style.setBorderBottom(BorderStyle.MEDIUM);
+        font.setBold(true);
+        font.setColor(HSSFColor.WHITE.index);
+        style.setFont(font);
+        style.setWrapText(true);
+
+
+        CellStyle headerStyle = workbook.createCellStyle();
+        org.apache.poi.ss.usermodel.Font fontS = workbook.createFont();
+        font.setFontName("Arial");
+        font.setBold(true);
+        headerStyle.setBorderBottom(BorderStyle.MEDIUM);
+        headerStyle.setFont(fontS);
+        headerStyle.setWrapText(true);
+        Row headerTitle = sheet.createRow(0);
+        headerTitle.createCell(0).setCellValue("WeatherForecast");;
+        headerTitle.getCell(0).setCellStyle(headerStyle);
+
+        sheet.addMergedRegion(new CellRangeAddress(0, 0, 0, 1));
+
+        Row header = sheet.createRow(1);
+        header.createCell(0).setCellValue("Date");
+        header.getCell(0).setCellStyle(style);
+        header.createCell(1).setCellValue("Temperature, °C");
+        header.getCell(1).setCellStyle(style);
+        header.createCell(2).setCellValue("Condition");
+        header.getCell(2).setCellStyle(style);
+        header.createCell(3).setCellValue("Wind, m/s");
+        header.getCell(3).setCellStyle(style);
+        header.createCell(4).setCellValue("Pressure, kPa");
+        header.getCell(4).setCellStyle(style);
+
+        int rowCount = 2;
+
+        CellStyle otherCellStyle = workbook.createCellStyle();
+        otherCellStyle.setBorderBottom(BorderStyle.MEDIUM);
+        otherCellStyle.setWrapText(true);
+
+        for (Weather weather : weathers) {
+            Row commentRow = sheet.createRow(rowCount++);
+            commentRow.createCell(0).setCellValue(weather.getDate().toString());
+            commentRow.getCell(0).setCellStyle(otherCellStyle);
+            int columnIndex = commentRow.getCell(0).getColumnIndex();
+
+            sheet.autoSizeColumn(columnIndex);
+            commentRow.createCell(1).setCellValue(weather.getTemp());
+            commentRow.getCell(1).setCellStyle(otherCellStyle);
+            columnIndex = commentRow.getCell(1).getColumnIndex();
+            sheet.autoSizeColumn(columnIndex);
+
+            commentRow.createCell(2).setCellValue(weather.getType().getName());
+            commentRow.getCell(2).setCellStyle(otherCellStyle);
+            columnIndex = commentRow.getCell(2).getColumnIndex();
+            sheet.autoSizeColumn(columnIndex);
+
+            commentRow.createCell(3).setCellValue(weather.getWind());
+            commentRow.getCell(3).setCellStyle(otherCellStyle);
+            columnIndex = commentRow.getCell(3).getColumnIndex();
+            sheet.autoSizeColumn(columnIndex);
+
+            commentRow.createCell(4).setCellValue(weather.getPressure());
+            commentRow.getCell(4).setCellStyle(otherCellStyle);
+            columnIndex = commentRow.getCell(4).getColumnIndex();
+            sheet.autoSizeColumn(columnIndex);
+        }
     }
 
     @Override
     public void buildCsv(ICsvBeanWriter writer) throws IOException, SQLException {
+        initialize(null);
+        String[] header = {"Date", "Temp", "Condition", "Wind", "Pressure"};
+        writer.writeHeader(header);
+        for (Weather weather : weathers) {
+            try {
+                writer.write(new WeatherBean(weather.getDate().toString(), weather.getTemp(), weather.getType().getName(), weather.getWind(), weather.getPressure()), header);
+            } catch (SuperCsvException exception) {
+                System.out.println(exception.toString());
+            }
+        }
+    }
 
+    public class WeatherBean {
+        public String getDate() {
+            return date;
+        }
+
+        public void setDate(String date) {
+            this.date = date;
+        }
+
+        public Integer getTemp() {
+            return temp;
+        }
+
+        public void setTemp(Integer temp) {
+            this.temp = temp;
+        }
+
+        public String getCondition() {
+            return condition;
+        }
+
+        public void setCondition(String condition) {
+            this.condition = condition;
+        }
+
+        public Integer getWind() {
+            return wind;
+        }
+
+        public void setWind(Integer wind) {
+            this.wind = wind;
+        }
+
+        public Integer getPressure() {
+            return pressure;
+        }
+
+        public void setPressure(Integer pressure) {
+            this.pressure = pressure;
+        }
+
+        public WeatherBean(String date, Integer temp, String condition, Integer wind, Integer pressure) {
+            this.date = date;
+            this.temp = temp;
+            this.condition = condition;
+            this.wind = wind;
+            this.pressure = pressure;
+        }
+
+        public WeatherBean() {
+        }
+
+        private String date;
+        private Integer temp;
+        private String condition;
+        private Integer wind;
+        private Integer pressure;
     }
 }

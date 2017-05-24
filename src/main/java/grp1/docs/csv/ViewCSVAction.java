@@ -1,13 +1,16 @@
 package grp1.docs.csv;
 
 import com.opensymphony.xwork2.ActionSupport;
+import grp1.docs.DocumentHelper;
 import grp1.docs.DocumentModel;
 import grp1.docs.DocumentTypes;
+import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.interceptor.ServletResponseAware;
 import org.supercsv.io.CsvBeanWriter;
 import org.supercsv.io.ICsvBeanWriter;
 import org.supercsv.prefs.CsvPreference;
 
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletResponse;
 import java.io.ByteArrayOutputStream;
 import java.io.OutputStream;
@@ -36,7 +39,8 @@ public class ViewCSVAction extends ActionSupport
 
     @Override
     public String execute() throws Exception {
-        DocumentModel model = DocumentTypes.getTypes().get(type);
+        ServletContext context = ServletActionContext.getServletContext();
+        DocumentModel model = DocumentHelper.getDocumentModel(type, context);
         String filename = type+".csv";
 
         response.setContentType("text/csv");

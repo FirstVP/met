@@ -103,7 +103,6 @@ public class CityDocumentModel extends DocumentModel {
     public void buildXls(Workbook workbook) throws Exception {
         initialize(null);
         Sheet sheet = workbook.createSheet("Cities");
-        //setDefaultColumnWidth(60);
 
         CellStyle style = workbook.createCellStyle();
         org.apache.poi.ss.usermodel.Font font = workbook.createFont();
