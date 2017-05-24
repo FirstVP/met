@@ -135,7 +135,27 @@
                                         <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Accidents <b class="caret"></b></a><ul class="dropdown-menu">
                                             <s:url action="accidentsIndex" var="accidentsUrl"></s:url>
                                             <li><a href="<s:property value="#accidentsUrl"/>">Index</a></li>
-                                            <li><a href="#">Doc</a></li>
+                                            <s:url var="url" action="viewPDF" escapeAmp="false">
+                                                <s:param name="type">Accidents</s:param>
+                                                <s:param name="hasProtection">false</s:param>
+                                            </s:url>
+                                            <li><a href="<s:property value="#url"/>">Get latest accidents (PDF)</a></li>
+
+                                            <s:url var="url" action="viewPDF" escapeAmp="false">
+                                                <s:param name="type">Accidents</s:param>
+                                                <s:param name="hasProtection">true</s:param>
+                                            </s:url>
+                                            <li><a href="<s:property value="#url"/>">Get latest accidents (Protected PDF)</a></li>
+
+                                            <s:url var="url" action="viewXLS">
+                                                <s:param name="type">Accidents</s:param>
+                                            </s:url>
+                                            <li><a href="<s:property value="#url"/>">Get latest accidents (XLS)</a></li>
+
+                                            <s:url var="url" action="viewCSV">
+                                                <s:param name="type">Accidents</s:param>
+                                            </s:url>
+                                            <li><a href="<s:property value="#url"/>">Get latest accidents (CSV)</a></li>
                                         </ul></li>
 
 

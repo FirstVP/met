@@ -1,5 +1,6 @@
 package grp1.docs;
 
+import grp1.docs.model.AccidentDocumentModel;
 import grp1.docs.model.CityDocumentModel;
 import grp1.docs.model.NewsDocumentModel;
 
@@ -20,7 +21,7 @@ public class DocumentTypes {
     {
         types.put("Cities", new CityDocumentModel());
         types.put("News", new NewsDocumentModel());
-
+        types.put("Accidents", new AccidentDocumentModel());
     }
 
 

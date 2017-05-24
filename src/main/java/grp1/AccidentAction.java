@@ -7,6 +7,7 @@ import grp1.dao.DisasterDao;
 import grp1.model.Accident;
 import grp1.model.City;
 import grp1.model.Disaster;
+import grp1.service.AccidentService;
 import org.apache.struts2.interceptor.validation.SkipValidation;
 
 import java.sql.SQLException;
@@ -94,25 +95,11 @@ public class AccidentAction extends ActionSupport {
         disasters = disasterDao.getAllDisasters();
         accidentDao = new AccidentDao();
         accidents = accidentDao.getAllAccidents();
-        for (Accident item: accidents)
-        {
-            for (Disaster disasterItem: disasters)
-            {
-                if (item.getDisasterId() == disasterItem.getDisasterId()) {
-                    item.setDisaster(disasterItem);
-                    break;
-                }
-            }
-            for (City cityItem: cities)
-            {
-                if (item.getCityId() == cityItem.getCityId()) {
-                    item.setCity(cityItem);
-                    break;
-                }
-            }
-        }
+        AccidentService.setAccidentsChildEntities(accidents, disasters, cities);
         return SUCCESS;
     }
+
+
 
     public String save() throws SQLException {
         if (accident.getAccidentId() == null) {
