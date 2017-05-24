@@ -52,6 +52,18 @@
 <div class="container">
 
     <h2>Weather
+        <s:url var="url" action="viewPDF" escapeAmp="false">
+            <s:param name="type">CityWeather <s:property value="%{city.cityId}"/></s:param>
+            <s:param name="hasProtection">false</s:param>
+        </s:url>
+        <li><a href="<s:property value="#url"/>">Get weather forecast for this week (PDF)</a></li>
+
+        <s:url var="url" action="viewPDF" escapeAmp="false">
+            <s:param name="type">CityWeather <s:property value="%{city.cityId}"/></s:param>
+            <s:param name="hasProtection">true</s:param>
+        </s:url>
+        <li><a href="<s:property value="#url"/>">Get weather forecast for this week (Protected PDF)</a></li>
+
 <s:if test='#session.role_id == 2'>
         <s:url action="inputWeather" var="url">
             <s:param name="weather.cityId" value="cityId"/>

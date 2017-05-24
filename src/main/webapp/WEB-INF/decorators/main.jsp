@@ -79,7 +79,27 @@
                                         <a href="./">Home</a>
                                     </li>
                                     <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">News <b class="caret"></b></a><ul class="dropdown-menu">
-                                        <li><a href="#">Doc</a></li>
+                                        <s:url var="url" action="viewPDF" escapeAmp="false">
+                                            <s:param name="type">News</s:param>
+                                            <s:param name="hasProtection">false</s:param>
+                                        </s:url>
+                                        <li><a href="<s:property value="#url"/>">Get latest news (PDF)</a></li>
+
+                                        <s:url var="url" action="viewPDF" escapeAmp="false">
+                                            <s:param name="type">News</s:param>
+                                            <s:param name="hasProtection">true</s:param>
+                                        </s:url>
+                                        <li><a href="<s:property value="#url"/>">Get latest news (Protected PDF)</a></li>
+
+                                        <s:url var="url" action="viewXLS">
+                                            <s:param name="type">News</s:param>
+                                        </s:url>
+                                        <li><a href="<s:property value="#url"/>">Get latest news (XLS)</a></li>
+
+                                        <s:url var="url" action="viewCSV">
+                                            <s:param name="type">News</s:param>
+                                        </s:url>
+                                        <li><a href="<s:property value="#url"/>">Get latest news (CSV)</a></li>
                                     </ul></li>
                                     <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Cities <b class="caret"></b></a><ul class="dropdown-menu">
                                         <s:url action="citiesIndex" var="citiesUrl"></s:url>

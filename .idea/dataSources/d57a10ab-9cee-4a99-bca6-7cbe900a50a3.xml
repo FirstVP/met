@@ -146,7 +146,7 @@
     </column>
     <column id="43" parent="13" name="news_content">
       <Position>4</Position>
-      <DataType>varchar(500)|0</DataType>
+      <DataType>varchar(10000)|0</DataType>
       <NotNull>1</NotNull>
     </column>
     <column id="44" parent="13" name="news_date">

@@ -1,24 +1,15 @@
 package grp1.docs.pdf;
 
-import com.itextpdf.text.Document;
-import com.itextpdf.text.DocumentException;
-import com.itextpdf.text.PageSize;
-import com.itextpdf.text.Paragraph;
-import com.itextpdf.text.pdf.PdfWriter;
 import com.opensymphony.xwork2.ActionSupport;
 import grp1.docs.DocumentModel;
 import grp1.docs.DocumentTypes;
-import grp1.docs.model.CityDocumentModel;
-import org.apache.struts2.ServletActionContext;
+import grp1.docs.model.WeatherDocumentModel;
+import grp1.docs.DocumentHelper;
 import org.apache.struts2.interceptor.ServletResponseAware;
 
-import javax.print.Doc;
-import javax.servlet.ServletOutputStream;
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.ByteArrayOutputStream;
 import java.io.OutputStream;
-import java.util.Map;
 
 public class ViewPDFAction extends ActionSupport
         implements ServletResponseAware {
@@ -49,7 +40,17 @@ public class ViewPDFAction extends ActionSupport
 
     @Override
     public String execute() throws Exception {
-        DocumentModel model = DocumentTypes.getTypes().get(type);
+        DocumentModel model = null;
+        String[] splited = type.split("\\s+");
+        if (splited[0].equals("CityWeather"))
+        {
+            model = new WeatherDocumentModel(DocumentHelper.tryParse(splited[1]));
+            type = splited[0];
+        }
+        else
+        {
+            model = DocumentTypes.getTypes().get(type);
+        }
         ByteArrayOutputStream baosPDF = new PDFGenerator().generatePDF(model, hasProtection);
         String filename = type+".pdf";
 

@@ -25,7 +25,7 @@ public class WeatherDao {
     public List getAllWeathers() throws SQLException {
         ArrayList<Weather> list = new ArrayList<Weather>();
         PreparedStatement ps= connection.prepareStatement(
-                "select * from weathers");
+                "select * from weathers order by weather_date");
         try
         {
             ResultSet rs=ps.executeQuery();

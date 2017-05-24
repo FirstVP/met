@@ -1,6 +1,7 @@
 package grp1.docs;
 
 import grp1.docs.model.CityDocumentModel;
+import grp1.docs.model.NewsDocumentModel;
 
 import java.sql.SQLException;
 import java.util.HashMap;
@@ -18,6 +19,8 @@ public class DocumentTypes {
     static
     {
         types.put("Cities", new CityDocumentModel());
+        types.put("News", new NewsDocumentModel());
+
     }
 
 

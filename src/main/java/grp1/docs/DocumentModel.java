@@ -10,7 +10,7 @@ import java.util.List;
 
 public abstract class DocumentModel {
 
-    public abstract void initialize() throws SQLException;
+    public abstract void initialize(Object value) throws SQLException;
 
     public abstract void buildPdf(com.itextpdf.text.Document doc) throws DocumentException, SQLException;
 

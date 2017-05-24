@@ -10,7 +10,7 @@ import com.itextpdf.text.pdf.*;
 import grp1.docs.DocumentModel;
 
 public class PDFGenerator {
-    private static Font TIME_ROMAN = new Font(Font.FontFamily.TIMES_ROMAN, 18,
+    public static final Font TIME_ROMAN = new Font(Font.FontFamily.TIMES_ROMAN, 18,
             Font.BOLD);
     private static Font TIME_ROMAN_SMALL = new Font(
             Font.FontFamily.TIMES_ROMAN, 12, Font.BOLD);
@@ -26,7 +26,6 @@ public class PDFGenerator {
             doc.open();
             addMetaData(doc);
             addFormBlank(pdfWriter);
-            addTitlePage(doc);
 
             model.buildPdf(doc);
 
@@ -64,14 +63,7 @@ public class PDFGenerator {
         document.addCreator("Trukhanovich");
     }
 
-    private static void addTitlePage(Document document)
-            throws DocumentException {
-        Paragraph preface = new Paragraph();
-        creteEmptyLine(preface, 1);
-        preface.add(new Paragraph("PDF Report", TIME_ROMAN));
-        creteEmptyLine(preface, 1);
-        document.add(preface);
-    }
+
 
     private static void creteEmptyLine(Paragraph paragraph, int number) {
         for (int i = 0; i < number; i++) {
