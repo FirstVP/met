@@ -12,7 +12,7 @@ public abstract class DocumentModel {
 
     public abstract void initialize(Object value) throws SQLException;
 
-    public abstract void buildPdf(com.itextpdf.text.Document doc) throws DocumentException, SQLException;
+    public abstract void buildPdf(com.itextpdf.text.Document doc) throws DocumentException, SQLException, IOException;
 
     public abstract void buildXls(Workbook workbook) throws Exception;
 

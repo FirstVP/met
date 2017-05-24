@@ -15,9 +15,14 @@ import grp1.model.Weather;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.supercsv.io.ICsvBeanWriter;
 
+import javax.imageio.ImageIO;
+import javax.servlet.ServletContext;
+import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.IOException;
+import java.net.URL;
 import java.sql.SQLException;
-import java.util.ArrayList;
+import java.util.*;
 import java.util.List;
 
 /**
@@ -28,9 +33,11 @@ public class WeatherDocumentModel extends DocumentModel {
     private int code;
     private List<Weather> weathers;
     private City city;
+    private ServletContext context;
 
-    public WeatherDocumentModel (int code)
+    public WeatherDocumentModel (int code, ServletContext context)
     {
+        this.context = context;
         this.code = code;
     }
     @Override
@@ -63,7 +70,7 @@ public class WeatherDocumentModel extends DocumentModel {
     }
 
     @Override
-    public void buildPdf(Document doc) throws DocumentException, SQLException {
+    public void buildPdf(Document doc) throws DocumentException, SQLException, IOException {
         initialize(null);
         addTitlePage(doc);
         createTable(doc);
@@ -84,23 +91,33 @@ public class WeatherDocumentModel extends DocumentModel {
         }
     }
 
-    private void createTable(Document document) throws DocumentException {
+    private void createTable(Document document) throws DocumentException, IOException {
         Paragraph paragraph = new Paragraph();
         creteEmptyLine(paragraph, 2);
         document.add(paragraph);
-        PdfPTable table = new PdfPTable(3);
+        PdfPTable table = new PdfPTable(5);
 
-        PdfPCell c1 = new PdfPCell(new Phrase("Temp"));
+        PdfPCell c1 = new PdfPCell(new Phrase("Date"));
         c1.setBackgroundColor(BaseColor.GRAY);
         c1.setHorizontalAlignment(Element.ALIGN_CENTER);
         table.addCell(c1);
 
-        c1 = new PdfPCell(new Phrase("Wind"));
+        c1 = new PdfPCell(new Phrase("Temperature, °C"));
         c1.setBackgroundColor(BaseColor.GRAY);
         c1.setHorizontalAlignment(Element.ALIGN_CENTER);
         table.addCell(c1);
 
-        c1 = new PdfPCell(new Phrase("Date"));
+        c1 = new PdfPCell(new Phrase("Condition"));
+        c1.setBackgroundColor(BaseColor.GRAY);
+        c1.setHorizontalAlignment(Element.ALIGN_CENTER);
+        table.addCell(c1);
+
+        c1 = new PdfPCell(new Phrase("Wind, m/s"));
+        c1.setBackgroundColor(BaseColor.GRAY);
+        c1.setHorizontalAlignment(Element.ALIGN_CENTER);
+        table.addCell(c1);
+
+        c1 = new PdfPCell(new Phrase("Pressure, kPa"));
         c1.setBackgroundColor(BaseColor.GRAY);
         c1.setHorizontalAlignment(Element.ALIGN_CENTER);
         table.addCell(c1);
@@ -112,9 +129,31 @@ public class WeatherDocumentModel extends DocumentModel {
             table.setWidthPercentage(100);
             table.getDefaultCell().setHorizontalAlignment(Element.ALIGN_CENTER);
             table.getDefaultCell().setVerticalAlignment(Element.ALIGN_MIDDLE);
+
+            Calendar calendar= GregorianCalendar.getInstance();
+            calendar.setTime(weather.getDate());
+            String dayOfWeek = calendar.getDisplayName( Calendar.DAY_OF_WEEK ,Calendar.LONG, Locale.ENGLISH);
+
+            Paragraph paragraphDate = new Paragraph();
+            paragraphDate.add(dayOfWeek+"\n");
+            paragraphDate.add(weather.getDate().toString());
+            table.addCell(paragraphDate);
+
             table.addCell(weather.getTemp().toString());
+
+            String path = context.getRealPath(weather.getType().getImage());
+            Image image = Image.getInstance(path);
+            image.setWidthPercentage(20);
+            image.setAlignment(Element.ALIGN_CENTER);
+            PdfPCell cell = new PdfPCell();
+            cell.addElement(image);
+            Paragraph p = new Paragraph(weather.getType().getName());
+            p.setAlignment( Element.ALIGN_CENTER);
+            cell.addElement(p);
+            table.addCell(cell);
+
             table.addCell(weather.getWind().toString());
-            table.addCell(weather.getDate().toString());
+            table.addCell(weather.getPressure().toString());
         }
 
         document.add(table);

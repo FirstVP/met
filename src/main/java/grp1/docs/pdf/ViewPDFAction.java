@@ -5,8 +5,12 @@ import grp1.docs.DocumentModel;
 import grp1.docs.DocumentTypes;
 import grp1.docs.model.WeatherDocumentModel;
 import grp1.docs.DocumentHelper;
+import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.interceptor.ServletResponseAware;
+import org.apache.struts2.util.ServletContextAware;
 
+import javax.servlet.ServletContext;
+import javax.servlet.ServletContextListener;
 import javax.servlet.http.HttpServletResponse;
 import java.io.ByteArrayOutputStream;
 import java.io.OutputStream;
@@ -16,7 +20,6 @@ public class ViewPDFAction extends ActionSupport
 
     private static final long serialVersionUID = 1L;
     private HttpServletResponse response;
-
     public String getType() {
         return type;
     }
@@ -44,13 +47,15 @@ public class ViewPDFAction extends ActionSupport
         String[] splited = type.split("\\s+");
         if (splited[0].equals("CityWeather"))
         {
-            model = new WeatherDocumentModel(DocumentHelper.tryParse(splited[1]));
+            ServletContext context = ServletActionContext.getServletContext();
+            model = new WeatherDocumentModel(DocumentHelper.tryParse(splited[1]), context);
             type = splited[0];
         }
         else
         {
             model = DocumentTypes.getTypes().get(type);
         }
+
         ByteArrayOutputStream baosPDF = new PDFGenerator().generatePDF(model, hasProtection);
         String filename = type+".pdf";
 
@@ -72,4 +77,6 @@ public class ViewPDFAction extends ActionSupport
     public void setServletResponse(HttpServletResponse response) {
         this.response = response;
     }
+
+
 }
