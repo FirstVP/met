@@ -38,9 +38,6 @@
                         <a class="navbar-brand" href="#">Weather</a>
                     </div>
                     <ul class="nav navbar-nav">
-                        <li class="active"><a href="#">Home</a></li>
-                        <li><a href="#">Page 1</a></li>
-                        <li><a href="#">Page 2</a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
                         <s:if test='#session.user_name != null'>
@@ -79,10 +76,12 @@
                                         <a href="./">Home</a>
                                     </li>
                                     <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">News <b class="caret"></b></a><ul class="dropdown-menu">
+                                        <s:if test='#session.role_id != null'>
                                         <s:url var="url" action="viewPDF" escapeAmp="false">
                                             <s:param name="type">News</s:param>
                                             <s:param name="hasProtection">false</s:param>
                                         </s:url>
+
                                         <li><a href="<s:property value="#url"/>">Get latest news (PDF)</a></li>
 
                                         <s:url var="url" action="viewPDF" escapeAmp="false">
@@ -100,11 +99,12 @@
                                             <s:param name="type">News</s:param>
                                         </s:url>
                                         <li><a href="<s:property value="#url"/>">Get latest news (CSV)</a></li>
+                                        </s:if>
                                     </ul></li>
                                     <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Cities <b class="caret"></b></a><ul class="dropdown-menu">
                                         <s:url action="citiesIndex" var="citiesUrl"></s:url>
                                         <li><a href="<s:property value="#citiesUrl"/>">Index</a></li>
-
+                                        <s:if test='#session.role_id != null'>
                                         <s:url var="url" action="viewPDF" escapeAmp="false">
                                             <s:param name="type">Cities</s:param>
                                             <s:param name="hasProtection">false</s:param>
@@ -126,15 +126,16 @@
                                             <s:param name="type">Cities</s:param>
                                         </s:url>
                                         <li><a href="<s:property value="#url"/>">Get cities (CSV)</a></li>
+                                        </s:if>
                                     </ul></li>
                                     <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Disasters <b class="caret"></b></a><ul class="dropdown-menu">
                                         <s:url action="disastersIndex" var="disastersUrl"></s:url>
                                         <li><a href="<s:property value="#disastersUrl"/>">Index</a></li>
-                                        <li><a href="#">Doc</a>
                                     </ul></li>
                                         <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Accidents <b class="caret"></b></a><ul class="dropdown-menu">
                                             <s:url action="accidentsIndex" var="accidentsUrl"></s:url>
                                             <li><a href="<s:property value="#accidentsUrl"/>">Index</a></li>
+                                            <s:if test='#session.role_id != null'>
                                             <s:url var="url" action="viewPDF" escapeAmp="false">
                                                 <s:param name="type">Accidents</s:param>
                                                 <s:param name="hasProtection">false</s:param>
@@ -156,6 +157,7 @@
                                                 <s:param name="type">Accidents</s:param>
                                             </s:url>
                                             <li><a href="<s:property value="#url"/>">Get latest accidents (CSV)</a></li>
+                                                </s:if>
                                         </ul></li>
 
 
@@ -163,16 +165,6 @@
 
 
                                 </ul>
-                                <form class="navbar-form navbar-left">
-                                    <div class="form-group">
-                                        <input class="form-control" placeholder="Search">
-                                    </div>
-                                    <button class="btn btn-default">Search</button>
-                                </form>
-                                <ul class="nav navbar-nav navbar-right">
-                                    <li><a href="#">Page 4</a></li>
-                                </ul>
-                                <button class="btn btn-default navbar-btn">Button</button>
                             </div>
                         </div>
                     </nav>
@@ -195,7 +187,7 @@
         <div id="footer" class="clearfix">
             <nav class="navbar navbar-inverse navbar-fixed-bottom">
                 <div class="container-fluid">
-                    <center style="color:white">© BSUIR 2017</center>
+                    <center style="color:white">© Trukhanovich, Lomako, Subachus, 451003, BSUIR 2017</center>
                 </div>
             </nav>
             </div>

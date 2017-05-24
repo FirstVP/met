@@ -1,9 +1,12 @@
 package grp1.docs;
 
+import grp1.docs.model.StatisticsDocumentModel;
 import grp1.docs.model.WeatherDocumentModel;
 import org.apache.struts2.ServletActionContext;
 
 import javax.servlet.ServletContext;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -30,6 +33,14 @@ public class DocumentHelper {
         return week == targetWeek && year == targetYear;
     }
 
+    public static double round(double value, int places) {
+        if (places < 0)
+            throw new IllegalArgumentException();
+        BigDecimal bd = new BigDecimal(value);
+        bd = bd.setScale(places, RoundingMode.HALF_UP);
+        return bd.doubleValue();
+    }
+
     public static DocumentModel getDocumentModel(String type, ServletContext context) {
         DocumentModel model = null;
         if (type == null)
@@ -40,8 +51,13 @@ public class DocumentHelper {
             if (splited[0].equals("CityWeather"))
             {
                 model = new WeatherDocumentModel(DocumentHelper.tryParse(splited[1]), context);
-                type = splited[0];
             }
+            else
+            if (splited[0].equals("CityStats"))
+            {
+                model = new StatisticsDocumentModel(DocumentHelper.tryParse(splited[1]));
+            }
+            type = splited[0];
         }
         else
         {

@@ -36,7 +36,29 @@
                 <p>Population: <s:property value="%{city.population}"/></p>
             </div>
         </div>
+        <s:if test='#session.role_id != null'>
+        <s:url var="url" action="viewPDF" escapeAmp="false">
+            <s:param name="type">CityStats <s:property value="%{city.cityId}"/></s:param>
+            <s:param name="hasProtection">false</s:param>
+        </s:url>
+        <li><a href="<s:property value="#url"/>">Get weather statistics of the city (PDF)</a></li>
 
+        <s:url var="url" action="viewPDF" escapeAmp="false">
+            <s:param name="type">CityStats <s:property value="%{city.cityId}"/></s:param>
+            <s:param name="hasProtection">true</s:param>
+        </s:url>
+        <li><a href="<s:property value="#url"/>">Get weather statistics of the city (Protected PDF)</a></li>
+
+        <s:url var="url" action="viewXLS" escapeAmp="false">
+            <s:param name="type">CityStats <s:property value="%{city.cityId}"/></s:param>
+        </s:url>
+        <li><a href="<s:property value="#url"/>">Get weather statistics of the city (XLS)</a></li>
+
+        <s:url var="url" action="viewCSV" escapeAmp="false">
+            <s:param name="type">CityStats <s:property value="%{city.cityId}"/></s:param>
+        </s:url>
+        <li><a href="<s:property value="#url"/>">Get weather statistics of the city (CSV)</a></li>
+        </s:if >
         <div class="panel panel-primary">
             <div class="panel-heading">Humidity</div>
             <div class="panel-body"> <img src="http://pogoda.by/mg/366/egrr_T<s:property value="%{city.code}"/>.gif" class="img-rounded img-responsive" border="1" ></div>

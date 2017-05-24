@@ -16,6 +16,7 @@
 package grp1;
 
 import com.sun.org.apache.xpath.internal.operations.Bool;
+import grp1.model.City;
 import junit.framework.TestCase;
 
 import com.opensymphony.xwork2.Action;
@@ -26,7 +27,7 @@ import com.opensymphony.xwork2.Action;
 public class CitiesActionTest extends TestCase {
 
     public void testIndex() throws Exception {
-        IndexAction action = new IndexAction();
+        CityAction action = new CityAction();
         String result = action.execute();
         assertEquals(Action.SUCCESS, result);
     }

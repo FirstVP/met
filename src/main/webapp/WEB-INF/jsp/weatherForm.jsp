@@ -12,10 +12,10 @@
 </head>
 <body>
 <s:if test="weather==null || weather.weatherId == null">
-    <h1>Add news</h1>
+    <h1>Add weather</h1>
 </s:if>
 <s:else>
-    <h1>Update news</h1>
+    <h1>Update weather</h1>
 </s:else>
 <s:actionerror />
 <s:actionmessage />
