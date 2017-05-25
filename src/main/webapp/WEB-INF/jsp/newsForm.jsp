@@ -23,9 +23,13 @@
 
 <div class="form-group">
     <s:fielderror />
+    <label for="saveNews_news_title"> Title:</label>
     <s:textfield class="form-control" theme="simple" name="news.title" value="%{news.title}" label="%{getText('label.title')}" size="40"/>
+    <label for="saveNews_news_brief"> Brief:</label>
     <s:textfield class="form-control" theme="simple" name="news.brief" value="%{news.brief}" label="%{getText('label.brief')}" size="40"/>
+    <label for="saveNews_news_content"> Content:</label>
     <s:textarea class="form-control" theme="simple" name="news.content" value="%{news.content}" label="%{getText('label.content')}" size="20"/>
+    <label for="saveNews_news_date"> Date:</label>
     <s:textfield type="date" class="form-control" theme="simple" name="news.date" value="%{news.date.toString()}" label="%{getText('label.date')}" size="20" />
     <s:hidden class="form-control" theme="simple" name="news.newsId" value="%{news.newsId}"/>
     </div >

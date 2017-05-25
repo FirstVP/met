@@ -23,16 +23,19 @@
 
     <div class="form-group">
         <s:fielderror />
+        <label for="saveAccident_accident_disasterId"> Disaster:</label>
 
-
-        <s:select theme="simple" list="disasters" listKey="disasterId" listValue="name" name="accident.disasterId" value="%{accident.disasterId}"/>
-        <s:select theme="simple" list="cities" listKey="cityId" listValue="name" name="accident.cityId" value="%{accident.cityId}"/>
-
-        <s:select
+        <s:select class="form-control" theme="simple" list="disasters" listKey="disasterId" listValue="name" name="accident.disasterId" value="%{accident.disasterId}"/>
+        <label for="saveAccident_accident_cityId"> City:</label>
+        <s:select class="form-control" theme="simple" list="cities" listKey="cityId" listValue="name" name="accident.cityId" value="%{accident.cityId}"/>
+        <label for="saveAccident_accident_level"> Level:</label>
+        <s:select class="form-control"
                   list="#{'1':'1', '2':'2', '3':'3'}"
                   name="accident.level"
                   value="accident.level" />
+        <label for="saveAccident_accident_content"> Description:</label>
         <s:textarea  class="form-control" theme="simple" name="accident.content" value="%{accident.content}" label="%{getText('label.content')}" size="40"/>
+        <label for="saveAccident_accident_date"> Date:</label>
         <s:textfield type="date" class="form-control" theme="simple" name="accident.date" value="%{accident.date.toString()}" label="%{getText('label.date')}" size="20" />
         <s:hidden class="form-control" theme="simple" name="accident.accidentId" value="%{accident.accidentId}"/>
     </div >

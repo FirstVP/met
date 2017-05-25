@@ -23,7 +23,9 @@
 
     <div class="form-group">
         <s:fielderror />
+        <label for="saveDisaster_disaster_name"> Name:</label>
         <s:textfield class="form-control" theme="simple" name="disaster.name" value="%{disaster.name}" label="%{getText('label.name')}" size="40"/>
+        <label for="saveDisaster_disaster_global"> Is global:</label>
         <s:checkbox class="form-control" theme="simple" name="disaster.global" value="%{disaster.global}" label="%{getText('label.global')}" size="40"/>
         <s:hidden class="form-control" theme="simple" name="disaster.disasterId" value="%{disaster.disasterId}"/>
     </div >

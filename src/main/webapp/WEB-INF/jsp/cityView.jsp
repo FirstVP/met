@@ -110,7 +110,7 @@
                 <th>Air temperature, °C</th>
                 <th>Condition</th>
                 <th>Wind, m/s</th>
-                <th>Atmosphere pressure, kPa</th>
+                <th>Atmospheric pressure, kPa</th>
                 <th></th>
                 <th></th>
             </tr>

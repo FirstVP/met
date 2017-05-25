@@ -24,11 +24,15 @@
     <div class="form-group">
         <s:fielderror />
 
-
-        <s:select theme="simple" list="types" listKey="typeId" listValue="name" name="weather.typeId" value="%{weather.typeId}"/>
+        <label for="saveWeather_weather_typeId"> Condition:</label>
+        <s:select class="form-control" theme="simple" list="types" listKey="typeId" listValue="name" name="weather.typeId" value="%{weather.typeId}"/>
+        <label for="saveWeather_weather_temp"> Air temperature:</label>
         <s:textfield type="number" class="form-control" theme="simple" name="weather.temp" value="%{weather.temp}" label="%{getText('label.temp')}" size="40"/>
+        <label for="saveWeather_weather_wind"> Wind speed:</label>
         <s:textfield type="number" class="form-control" theme="simple" name="weather.wind" value="%{weather.wind}" label="%{getText('label.wind')}" size="40"/>
+        <label for="saveWeather_weather_pressure"> Atmospheric pressure:</label>
         <s:textfield type="number" class="form-control" theme="simple" name="weather.pressure" value="%{weather.pressure}" label="%{getText('label.pressure')}" size="40"/>
+        <label for="saveWeather_weather_date"> Date:</label>
         <s:textfield type="date" class="form-control" theme="simple" name="weather.date" value="%{weather.date.toString()}" label="%{getText('label.date')}" size="20" />
         <s:hidden class="form-control" theme="simple" name="weather.weatherId" value="%{weather.weatherId}"/>
         <s:hidden class="form-control" theme="simple" name="weather.cityId" value="%{weather.cityId}"/>

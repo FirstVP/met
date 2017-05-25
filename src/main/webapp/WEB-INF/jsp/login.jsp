@@ -14,14 +14,17 @@
 </head>
 <body>
 <hr/>
-
+<h2>Sign in</h2>
 
 <s:form action="loginprocess">
 <div class="form-group">
+    <s:fielderror />
+    <label for="loginprocess_username"> Name:</label>
     <s:textfield name="username" label="Name" class="form-control" theme="simple" ></s:textfield>
+    <label for="loginprocess_password"> Password:</label>
     <s:password name="userpass" label="Password" class="form-control" theme="simple"  ></s:password>
 </div>
-    <s:submit value="login" class="btn btn-default" theme="simple"></s:submit>
+    <s:submit value="Sign in" class="btn btn-default" theme="simple"></s:submit>
 </s:form>
 
 

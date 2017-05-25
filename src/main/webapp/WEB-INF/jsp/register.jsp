@@ -12,7 +12,7 @@
     <title>Registration</title>
 </head>
 <body>
-
+<h2>Sign up</h2>
 <s:form theme="simple" action="register" method="form">
     <div class="form-group">
         <s:fielderror />
@@ -24,7 +24,7 @@
     <s:textfield class="form-control" theme="simple" name="email" label="Email"></s:textfield>
     </div >
 
-    <s:submit class="btn btn-primary" value="register"></s:submit>
+    <s:submit class="btn btn-primary" value="Sign up"></s:submit>
 
 </s:form>
 </body>

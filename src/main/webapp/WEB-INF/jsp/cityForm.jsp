@@ -23,10 +23,15 @@
 
     <div class="form-group">
         <s:fielderror />
+        <label for="saveCity_city_code"> City code:</label>
         <s:textfield type="number" class="form-control" theme="simple" name="city.code" value="%{city.code}" label="%{getText('label.code')}" size="40"/>
+        <label for="saveCity_city_name"> Name:</label>
         <s:textfield class="form-control" theme="simple" name="city.name" value="%{city.name}" label="%{getText('label.name')}" size="40"/>
+        <label for="saveCity_city_rise"> Sea level rise:</label>
         <s:textfield type="number" class="form-control" theme="simple" name="city.rise" value="%{city.rise}" label="%{getText('label.rise')}" size="40"/>
+        <label for="saveCity_city_square"> City square:</label>
         <s:textfield type="number" class="form-control" theme="simple" name="city.square" value="%{city.square}" label="%{getText('label.square')}" size="40"/>
+        <label for="saveCity_city_population"> City population:</label>
         <s:textfield type="number" class="form-control" theme="simple" name="city.population" value="%{city.population}" label="%{getText('label.population')}" size="40"/>
         <s:hidden class="form-control" theme="simple" name="city.cityId" value="%{city.cityId}"/>
     </div >
