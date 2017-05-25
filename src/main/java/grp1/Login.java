@@ -10,6 +10,11 @@ import org.apache.struts2.interceptor.SessionAware;
 public class Login implements SessionAware{
     private String username,userpass;
     private User user;
+
+    public SessionMap<String, Object> getSessionMap() {
+        return sessionMap;
+    }
+
     private SessionMap<String,Object> sessionMap;
 
     public String getUsername() {
@@ -30,9 +35,12 @@ public class Login implements SessionAware{
 
     public String execute(){
         user = LoginDao.validate(username, userpass);
-        if(user != null){
-            sessionMap.put("user_name", user.getName());
-            sessionMap.put("role_id", user.getRole());
+        if ((user != null)){
+            if (sessionMap != null)
+            {
+                sessionMap.put("user_name", user.getName());
+                sessionMap.put("role_id", user.getRole());
+            }
             return "success";
         }
         else{

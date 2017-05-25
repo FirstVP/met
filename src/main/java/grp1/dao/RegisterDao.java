@@ -10,8 +10,16 @@ import java.sql.*;
  */
 public class RegisterDao {
 
+    private static boolean isEmptyString ( String value )
+    {
+        return value == null || "".equals ( value.trim () );
+    }
+
     public static int save(RegisterAction r){
-        int status=0;
+        if (isEmptyString(r.getName()) || isEmptyString(r.getPassword()) || isEmptyString(r.getEmail())) {
+            return -1;
+        }
+        int status = 0;
         try{
             DataBaseConnectionTester tester = new DataBaseConnectionTester();
             Connection connection = tester.getConnection();

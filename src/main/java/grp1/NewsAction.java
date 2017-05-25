@@ -13,7 +13,7 @@ import java.util.List;
 public class NewsAction extends ActionSupport {
     private NewsDao newsDao = new NewsDao();
     private List newsList;
-
+    public static Integer errorCount = 0;
     public Integer getNewsId() {
         return newsId;
     }
@@ -33,11 +33,19 @@ public class NewsAction extends ActionSupport {
 
     private News news;
 
+    public String execute()
+    {
+        return SUCCESS;
+    }
+
     public String save() throws SQLException {
-        if (news.getNewsId() == null) {
-            newsDao.insert(news);
-        } else {
-            newsDao.update(news);
+        if (news != null)
+        {
+            if (news.getNewsId() == null) {
+                newsDao.insert(news);
+            } else {
+                newsDao.update(news);
+            }
         }
         return SUCCESS;
     }
@@ -72,14 +80,32 @@ public class NewsAction extends ActionSupport {
 
     public void validate ()
     {
+        errorCount = 0;
         if (news != null)
         {
+            if ( isEmptyString ( news.getTitle() ))
+            {
+                addFieldError ( "news.title", "Title is empty" );
+                errorCount++;
+            }
             if ( isEmptyString ( news.getBrief() ))
+            {
                 addFieldError ( "news.brief", "Brief is empty" );
+                errorCount++;
+            }
+
             if ( isEmptyString ( news.getContent() ))
+            {
                 addFieldError ( "news.content", "Content is empty" );
+                errorCount++;
+            }
+
             if (news.getDate() == null)
+            {
                 addFieldError ( "weather.date", "Date is wrong" );
+                errorCount++;
+            }
+
         }
 
     }

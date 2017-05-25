@@ -23,7 +23,7 @@ public class CityAction extends ActionSupport {
     public List<City> getCities() {
         return cities;
     }
-
+    public static Integer errorCount = 0;
     private List<City> cities;
 
     public Integer getCityId() {
@@ -58,10 +58,13 @@ public class CityAction extends ActionSupport {
     }
 
     public String save() throws SQLException {
-        if (city.getCityId() == null) {
-            cityDao.insert(city);
-        } else {
-            cityDao.update(city);
+        if (city != null)
+        {
+            if (city.getCityId() == null) {
+                cityDao.insert(city);
+            } else {
+                cityDao.update(city);
+            }
         }
         return SUCCESS;
     }
@@ -80,26 +83,29 @@ public class CityAction extends ActionSupport {
     public String getViewedCity() throws SQLException {
         CityDao cityDao = new CityDao();
         city = cityDao.getCityById(cityId);
-        List <Weather> list = weatherDao.getAllWeathers();
-        types = typeDao.getAllTypes();
-        weathers = new ArrayList<Weather>();
-        for (Weather weatherItem: list)
+        if (city != null)
         {
-            if (weatherItem.getCityId() == city.getCityId())
+            List <Weather> list = weatherDao.getAllWeathers();
+            types = typeDao.getAllTypes();
+            weathers = new ArrayList<Weather>();
+            for (Weather weatherItem: list)
             {
-                weathers.add(weatherItem);
-
-                for (Type typeItem: types)
+                if (weatherItem.getCityId() == city.getCityId())
                 {
-                    if (weatherItem.getTypeId() == typeItem.getTypeId())
+                    weathers.add(weatherItem);
+
+                    for (Type typeItem: types)
                     {
-                        weatherItem.setType(typeItem);
-                        break;
+                        if (weatherItem.getTypeId() == typeItem.getTypeId())
+                        {
+                            weatherItem.setType(typeItem);
+                            break;
+                        }
                     }
+
                 }
 
             }
-
         }
         return SUCCESS;
     }
@@ -126,18 +132,39 @@ public class CityAction extends ActionSupport {
 
     public void validate ()
     {
+        errorCount = 0;
         if (city != null)
         {
             if ( isEmptyString ( city.getName() ))
+            {
                 addFieldError ( "city.name", "Name is empty" );
+                errorCount++;
+            }
+
             if ( isWrong(city.getCode()))
+            {
                 addFieldError ( "city.code", "Code is wrong" );
+                errorCount++;
+            }
+
             if ( isWrong(city.getRise()))
+            {
                 addFieldError ( "city.rise", "Rise is wrong" );
+                errorCount++;
+            }
+
             if ( isWrong(city.getSquare()))
+            {
                 addFieldError ( "city.square", "Square is wrong" );
+                errorCount++;
+            }
+
             if ( isWrong(city.getPopulation()))
+            {
                 addFieldError ( "city.population", "Population is wrong" );
+                errorCount++;
+            }
+
         }
 
     }

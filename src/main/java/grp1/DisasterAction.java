@@ -16,6 +16,7 @@ import java.util.List;
 public class DisasterAction extends ActionSupport {
     private DisasterDao disasterDao = new DisasterDao();
     private Disaster disaster;
+    public static Integer errorCount = 0;
     private List<Disaster> disasters;
 
     public List<Disaster> getDisasters() {
@@ -49,10 +50,13 @@ public class DisasterAction extends ActionSupport {
     }
 
     public String save() throws SQLException {
-        if (disaster.getDisasterId() == null) {
-            disasterDao.insert(disaster);
-        } else {
-            disasterDao.update(disaster);
+        if (disaster != null)
+        {
+            if (disaster.getDisasterId() == null) {
+                disasterDao.insert(disaster);
+            } else {
+                disasterDao.update(disaster);
+            }
         }
         return SUCCESS;
     }
@@ -96,10 +100,14 @@ public class DisasterAction extends ActionSupport {
 
     public void validate ()
     {
+        errorCount = 0;
         if (disaster != null)
         {
             if ( isEmptyString ( disaster.getName() ))
+            {
                 addFieldError ( "disaster.name", "Name is empty" );
+                errorCount++;
+            }
         }
 
     }

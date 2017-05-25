@@ -17,6 +17,7 @@ import java.util.List;
 public class WeatherAction extends ActionSupport {
     private WeatherDao weatherDao = new WeatherDao();
     private TypeDao typeDao = new TypeDao();
+    public static Integer errorCount;
 
     public WeatherAction() throws SQLException {
         typeDao = new TypeDao();
@@ -64,10 +65,13 @@ public class WeatherAction extends ActionSupport {
 
 
     public String save() throws SQLException {
-        if (weather.getWeatherId() == null) {
-            weatherDao.insert(weather);
-        } else {
-            weatherDao.update(weather);
+        if (weather != null)
+        {
+            if (weather.getWeatherId() == null) {
+                weatherDao.insert(weather);
+            } else {
+                weatherDao.update(weather);
+            }
         }
         return SUCCESS;
     }
@@ -107,18 +111,45 @@ public class WeatherAction extends ActionSupport {
 
     public void validate ()
     {
+        errorCount = 0;
         if (weather != null)
         {
             if ( isWrong(weather.getTemp()))
+            {
                 addFieldError ( "weather.temp", "Temperature is wrong" );
+                errorCount++;
+            }
+
             if ( isWrong(weather.getTypeId()))
+            {
                 addFieldError ( "weather.typeId", "Condition is wrong" );
+                errorCount++;
+            }
+
+            if ( isWrong(weather.getCityId()))
+            {
+                addFieldError ( "weather.cityId", "City is wrong" );
+                errorCount++;
+            }
+
             if ( isWrong(weather.getWind()))
+            {
                 addFieldError ( "weather.wind", "Wind is wrong" );
+                errorCount++;
+            }
+
             if ( isWrong(weather.getPressure()))
+            {
                 addFieldError ( "weather.pressure", "Pressure is wrong" );
+                errorCount++;
+            }
+
             if (weather.getDate() == null)
+            {
                 addFieldError ( "weather.date", "Date is wrong" );
+                errorCount++;
+            }
+
         }
 
     }

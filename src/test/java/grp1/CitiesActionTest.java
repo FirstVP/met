@@ -38,15 +38,97 @@ public class CitiesActionTest extends TestCase {
         assertEquals(Action.SUCCESS, result);
     }
 
-    public void testIsWrongFalse() throws Exception {
+    public void testDelete() throws Exception {
         CityAction action = new CityAction();
-        Boolean result = action.isWrong(10);
-        assertEquals(Boolean.FALSE, result);
+        action.setCity(new City());
+        action.setCityId(-3);
+        String result = action.delete();
+        assertEquals(Action.SUCCESS, result);
     }
 
-    public void testIsWrongTrue() throws Exception {
+    public void testView() throws Exception {
         CityAction action = new CityAction();
-        Boolean result = action.isWrong(-10);
-        assertEquals(Boolean.TRUE, result);
+        action.setCityId(1);
+        String result = action.getViewedCity();
+        assertEquals(Action.SUCCESS, result);
     }
+
+    public void testViewNull() throws Exception {
+        CityAction action = new CityAction();
+        action.setCity(null);
+        action.setCityId(-5);
+        String result = action.getViewedCity();
+        assertEquals(null, action.getCity());
+    }
+
+    public void testUpdate() throws Exception {
+        CityAction action = new CityAction();
+        action.setCityId(1);
+        String result = action.getUpdatingCity();
+        assertEquals(Action.SUCCESS, result);
+    }
+
+    public void testSaveNull() throws Exception {
+        CityAction action = new CityAction();
+        String result = action.save();
+        assertEquals(Action.SUCCESS, result);
+    }
+
+    public void testSaveAdd() throws Exception {
+        CityAction action = new CityAction();
+        action.setCity(new City (null, 1, "Example", 1, 1, 1));
+        String result = action.save();
+        assertEquals(Action.SUCCESS, result);
+    }
+
+    public void testSaveUpdate() throws Exception {
+        CityAction action = new CityAction();
+        action.setCity(new City (12, 1, "Example", 10, 10, 10));
+        String result = action.save();
+        assertEquals(Action.SUCCESS, result);
+    }
+
+    public void testIsNameFalse() throws Exception {
+        CityAction action = new CityAction();
+        action.setCity(new City (1, 1, null, 1, 1, 1));
+        action.validate();
+        assertTrue(action.errorCount == 1);
+    }
+
+    public void testIsCodeFalse() throws Exception {
+        CityAction action = new CityAction();
+        action.setCity(new City (1, -1, "Test", 1, 1, 1));
+        action.validate();
+        assertTrue(action.errorCount == 1);
+    }
+
+    public void testIsRiseFalse() throws Exception {
+        CityAction action = new CityAction();
+        action.setCity(new City (1, 1, "Test", -1, 1, 1));
+        action.validate();
+        assertTrue(action.errorCount == 1);
+    }
+
+    public void testIsSquareFalse() throws Exception {
+        CityAction action = new CityAction();
+        action.setCity(new City (1, 1, "Test", 1, -1, 1));
+        action.validate();
+        assertTrue(action.errorCount == 1);
+    }
+
+    public void testIsPopulationFalse() throws Exception {
+        CityAction action = new CityAction();
+        action.setCity(new City (1, 1, "Test", 1, 1, -100));
+        action.validate();
+        assertTrue(action.errorCount == 1);
+    }
+
+    public void testIsCityTrue() throws Exception {
+        CityAction action = new CityAction();
+        action.setCity(new City (1, 1, "Test", 1, 1, 100));
+        action.validate();
+        assertTrue(action.errorCount == 0);
+    }
+
+
 }

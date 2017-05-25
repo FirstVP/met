@@ -13,12 +13,15 @@
 </head>
 <body>
 
-<s:form action="register" method="form">
-    <s:textfield name="name" label="UserName"></s:textfield>
-    <s:password name="password" label="Password"></s:password>
-    <s:textfield name="email" label="Email"></s:textfield>
+<s:form theme="simple" action="register" method="form">
+    <div class="form-group">
+        <s:fielderror />
+    <s:textfield class="form-control" theme="simple" name="name" label="UserName"></s:textfield>
+    <s:password class="form-control" theme="simple" name="password" label="Password"></s:password>
+    <s:textfield class="form-control" theme="simple" name="email" label="Email"></s:textfield>
+    </div >
 
-    <s:submit value="register"></s:submit>
+    <s:submit class="btn btn-primary" value="register"></s:submit>
 
 </s:form>
 </body>

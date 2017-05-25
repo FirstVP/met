@@ -8,6 +8,7 @@ import org.apache.struts2.interceptor.validation.SkipValidation;
  * Created by admin on 09.05.2017.
  */
 public class RegisterAction extends ActionSupport {
+    public static Integer errorCount = 0;
     public String getName() {
         return name;
     }
@@ -50,12 +51,25 @@ public class RegisterAction extends ActionSupport {
 
     public void validate ()
     {
+        errorCount = 0;
         if ( isEmptyString ( name ))
+        {
             addFieldError ( "name", "Name is empty" );
+            errorCount++;
+        }
+
         if ( isEmptyString ( password ))
+        {
             addFieldError ( "password", "Password is empty" );
+            errorCount++;
+        }
+
         if ( isEmptyString ( email ))
+        {
             addFieldError ( "email", "Email is empty" );
+            errorCount++;
+        }
+
         }
 
 

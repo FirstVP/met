@@ -21,6 +21,7 @@ public class AccidentAction extends ActionSupport {
     private AccidentDao accidentDao = new AccidentDao();
     private DisasterDao disasterDao = new DisasterDao();
     private CityDao cityDao = new CityDao();
+    public static Integer errorCount = 0;
 
     public AccidentAction() throws SQLException {
         cityDao = new CityDao();
@@ -102,10 +103,13 @@ public class AccidentAction extends ActionSupport {
 
 
     public String save() throws SQLException {
-        if (accident.getAccidentId() == null) {
-            accidentDao.insert(accident);
-        } else {
-            accidentDao.update(accident);
+        if (accident != null)
+        {
+            if (accident.getAccidentId() == null) {
+                accidentDao.insert(accident);
+            } else {
+                accidentDao.update(accident);
+            }
         }
         return SUCCESS;
     }
@@ -132,6 +136,8 @@ public class AccidentAction extends ActionSupport {
         disasters = disasterDao.getAllDisasters();
         accidentDao = new AccidentDao();
         accident = accidentDao.getAccidentById(accidentId);
+        if (accident != null)
+        {
             for (Disaster disasterItem: disasters)
             {
                 if (accident.getDisasterId() == disasterItem.getDisasterId()) {
@@ -146,6 +152,7 @@ public class AccidentAction extends ActionSupport {
                     break;
                 }
             }
+        }
         return SUCCESS;
     }
 
@@ -172,18 +179,39 @@ public class AccidentAction extends ActionSupport {
 
     public void validate ()
     {
+        errorCount = 0;
         if (accident != null)
         {
             if ( isWrong(accident.getCityId()))
+            {
                 addFieldError ( "accident.cityId", "City is wrong" );
+                errorCount++;
+            }
+
             if ( isWrong(accident.getDisasterId()))
+            {
                 addFieldError ( "accident.disasterId", "Disaster is wrong" );
+                errorCount++;
+            }
+
             if ( isWrong(accident.getLevel()))
+            {
                 addFieldError ( "accident.level", "Level is wrong" );
+                errorCount++;
+            }
+
             if ( isEmptyString(accident.getContent()))
-                addFieldError ( "accident.pressure", "Content is wrong" );
+            {
+                addFieldError ( "accident.content", "Content is wrong" );
+                errorCount++;
+            }
+
             if (accident.getDate() == null)
+            {
                 addFieldError ( "accident.date", "Date is wrong" );
+                errorCount++;
+            }
+
         }
 
     }
