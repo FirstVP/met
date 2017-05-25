@@ -16,8 +16,11 @@
 <s:form theme="simple" action="register" method="form">
     <div class="form-group">
         <s:fielderror />
+        <label for="regirster_name"> Name:</label>
     <s:textfield class="form-control" theme="simple" name="name" label="UserName"></s:textfield>
+        <label for="regirster_password"> Password:</label>
     <s:password class="form-control" theme="simple" name="password" label="Password"></s:password>
+        <label for="regirster_email"> Email:</label>
     <s:textfield class="form-control" theme="simple" name="email" label="Email"></s:textfield>
     </div >
 

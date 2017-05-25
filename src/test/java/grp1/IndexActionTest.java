@@ -29,4 +29,10 @@ public class IndexActionTest extends TestCase {
         String result = action.execute();
         assertEquals(Action.SUCCESS, result);
     }
+
+    public void testIndexList() throws Exception {
+        IndexAction action = new IndexAction();
+        String result = action.execute();
+        assertTrue(action.getNews() != null);
+    }
 }

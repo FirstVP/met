@@ -15,6 +15,12 @@ public class DisasterActionTest extends TestCase {
         assertEquals(Action.SUCCESS, result);
     }
 
+    public void testIndexList() throws Exception {
+        DisasterAction action = new DisasterAction();
+        String result = action.execute();
+        assertTrue(action.getDisasters() != null);
+    }
+
     public void testCancel() throws Exception {
         DisasterAction action = new DisasterAction();
         String result = action.cancel();
@@ -51,6 +57,13 @@ public class DisasterActionTest extends TestCase {
         assertEquals(Action.SUCCESS, result);
     }
 
+    public void testUpdateNull() throws Exception {
+        DisasterAction action = new DisasterAction();
+        action.setDisasterId(-1);
+        String result = action.getUpdatingDisaster();
+        assertEquals(Action.SUCCESS, result);
+    }
+
     public void testSaveNull() throws Exception {
         DisasterAction action = new DisasterAction();
         String result = action.save();
@@ -83,5 +96,11 @@ public class DisasterActionTest extends TestCase {
         action.setDisaster(new Disaster (1, "ExampleDisaster", false));
         action.validate();
         assertTrue(action.errorCount == 0);
+    }
+
+    public void testNullValidation() throws Exception {
+        DisasterAction action = new DisasterAction();
+        action.setDisaster(null);
+        action.validate();
     }
 }

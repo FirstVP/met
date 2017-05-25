@@ -32,6 +32,12 @@ public class CitiesActionTest extends TestCase {
         assertEquals(Action.SUCCESS, result);
     }
 
+    public void testIndexList() throws Exception {
+        CityAction action = new CityAction();
+        String result = action.execute();
+        assertTrue(action.getCities() != null);
+    }
+
     public void testCancel() throws Exception {
         CityAction action = new CityAction();
         String result = action.cancel();
@@ -64,6 +70,13 @@ public class CitiesActionTest extends TestCase {
     public void testUpdate() throws Exception {
         CityAction action = new CityAction();
         action.setCityId(1);
+        String result = action.getUpdatingCity();
+        assertEquals(Action.SUCCESS, result);
+    }
+
+    public void testUpdateNull() throws Exception {
+        CityAction action = new CityAction();
+        action.setCityId(-1);
         String result = action.getUpdatingCity();
         assertEquals(Action.SUCCESS, result);
     }
@@ -128,6 +141,12 @@ public class CitiesActionTest extends TestCase {
         action.setCity(new City (1, 1, "Test", 1, 1, 100));
         action.validate();
         assertTrue(action.errorCount == 0);
+    }
+
+    public void testNullValidation() throws Exception {
+        CityAction action = new CityAction();
+        action.setCity(null);
+        action.validate();
     }
 
 

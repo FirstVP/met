@@ -35,6 +35,13 @@ public class WeatherActionTest extends TestCase {
         assertEquals(Action.SUCCESS, result);
     }
 
+    public void testUpdateNull() throws Exception {
+        WeatherAction action = new WeatherAction();
+        action.setWeatherId(-1);
+        String result = action.getUpdatingWeather();
+        assertEquals(Action.SUCCESS, result);
+    }
+
     public void testSaveNull() throws Exception {
         WeatherAction action = new WeatherAction();
         String result = action.save();
@@ -102,5 +109,11 @@ public class WeatherActionTest extends TestCase {
         action.setWeather(new Weather (5, 1, 1, 3, 3, 3, new Date()));
         action.validate();
         assertTrue(action.errorCount == 0);
+    }
+
+    public void testNullValidation() throws Exception {
+        WeatherAction action = new WeatherAction();
+        action.setWeather(null);
+        action.validate();
     }
 }

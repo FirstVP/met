@@ -85,6 +85,12 @@ public class RegisterActionTest extends TestCase {
         assertTrue(action.errorCount == 0);
     }
 
+    public void testNullProperties() throws Exception {
+        RegisterAction action = new RegisterAction();
+        action.validate();
+        assertTrue(action.errorCount == 3);
+    }
+
     public void testInput() throws Exception {
         RegisterAction action = new RegisterAction();
         String result = action.input();

@@ -50,6 +50,13 @@ public class NewsActionTest extends TestCase {
         assertEquals(Action.SUCCESS, result);
     }
 
+    public void testUpdateNull() throws Exception {
+        NewsAction action = new NewsAction();
+        action.setNewsId(-1);
+        String result = action.getUpdatingNewsItem();
+        assertEquals(Action.SUCCESS, result);
+    }
+
     public void testSaveNull() throws Exception {
         NewsAction action = new NewsAction();
         String result = action.save();
@@ -103,5 +110,11 @@ public class NewsActionTest extends TestCase {
         action.setNews(new News (-1, "Title", "Brief", "Content", new Date()));
         action.validate();
         assertTrue(action.errorCount == 0);
+    }
+
+    public void testNullValidation() throws Exception {
+        NewsAction action = new NewsAction();
+        action.setNews(null);
+        action.validate();
     }
 }

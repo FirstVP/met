@@ -17,6 +17,12 @@ public class AccidentActionTest extends TestCase {
         assertEquals(Action.SUCCESS, result);
     }
 
+    public void testIndexList() throws Exception {
+        AccidentAction action = new AccidentAction();
+        String result = action.execute();
+        assertTrue(action.getAccidents() != null);
+    }
+
     public void testCancel() throws Exception {
         AccidentAction action = new AccidentAction();
         String result = action.cancel();
@@ -51,6 +57,13 @@ public class AccidentActionTest extends TestCase {
         action.setAccidentId(1);
         String result = action.getUpdatingAccident();
         assertEquals(Action.SUCCESS, result);
+    }
+
+    public void testUpdateNull() throws Exception {
+        AccidentAction action = new AccidentAction();
+        action.setAccidentId(-1);
+        String result = action.getUpdatingAccident();
+        assertEquals(null, action.getAccident());
     }
 
     public void testSaveNull() throws Exception {
@@ -113,5 +126,11 @@ public class AccidentActionTest extends TestCase {
         action.setAccident(new Accident (-1, 2, 1, 2, "Example description", new Date()));
         action.validate();
         assertTrue(action.errorCount == 0);
+    }
+
+    public void testNullValidation() throws Exception {
+        AccidentAction action = new AccidentAction();
+        action.setAccident(null);
+        action.validate();
     }
 }
