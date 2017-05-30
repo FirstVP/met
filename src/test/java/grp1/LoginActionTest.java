@@ -2,7 +2,6 @@ package grp1;
 
 import com.opensymphony.xwork2.Action;
 import junit.framework.TestCase;
-import org.apache.commons.collections.map.HashedMap;
 import org.apache.struts2.dispatcher.SessionMap;
 
 /**

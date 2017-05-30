@@ -9,7 +9,7 @@
     <constant name="struts.action.excludePattern" value="/Lab2"/>
     <constant name="struts.mapper.action.prefix.enabled" value="true" />
 
-    <package name="myPackage" extends="struts-default">
+    <package name="default" namespace="/" extends="json-default">
 
         <default-action-ref name="index" />
 
@@ -146,6 +146,29 @@
 
         <action name="viewCSV" class="grp1.docs.csv.ViewCSVAction">
             <!-- NO CONFIGURATION FOR RESULT NONE -->
+        </action>
+
+        <action name="addproduct" class="grp1.ang.ProductJSONAction" method="getFileName">
+            <result type="json" />
+        </action>
+
+        <action name="readproducts" class="grp1.ang.ProductJSONAction">
+            <result type="json" />
+        </action>
+
+        <action name="readoneproducts" class="grp1.ang.ProductSingleFetch" >
+            <result type="json" />
+
+        </action>
+
+        <action name="updateproducts" class="grp1.ang.ProductSingleFetch" method="updateProductData" >
+            <result type="json" />
+
+        </action>
+
+        <action name="deleteproduct" class="grp1.ang.ProductDelete"  >
+            <result type="json" />
+
         </action>
 
     </package>
