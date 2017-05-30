@@ -50,10 +50,20 @@ public class CityAction extends ActionSupport {
     }
 
     private List<Weather> weathers;
+
+    public List<Type> getTypes() {
+        return types;
+    }
+
+    public void setTypes(List<Type> types) {
+        this.types = types;
+    }
+
     private List<Type> types;
 
     public String execute() throws Exception {
         cities = cityDao.getAllCities();
+        types = new TypeDao().getAllTypes();
         return SUCCESS;
     }
 

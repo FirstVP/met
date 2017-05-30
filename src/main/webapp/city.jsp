@@ -76,6 +76,7 @@
                     <td>
                         <a ng-click="readOne(d.cityId)" class="waves-effect waves-light btn margin-bottom-1em"><i class="material-icons left">edit</i>Edit</a>
                         <a ng-click="deleteCity(d.cityId)" class="waves-effect waves-light btn margin-bottom-1em"><i class="material-icons left">delete</i>Delete</a>
+                        <a href="viewCity.action?cityId={{ d.cityId }}" class="waves-effect waves-light btn margin-bottom-1em"><i class="material-icons note">more</i>More</a>
                     </td>
                 </tr>
                 </tbody>

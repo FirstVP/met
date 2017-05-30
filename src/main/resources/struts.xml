@@ -91,7 +91,7 @@
         </action>
 
         <action name="viewCity" class="grp1.CityAction" method="getViewedCity">
-            <result >/WEB-INF/jsp/cityView.jsp</result>
+            <result >viewCity.jsp</result>
         </action>
 
         <action name="*Disaster" class="grp1.DisasterAction" method="{1}">
@@ -179,6 +179,22 @@
             <result type="json" />
         </action>
         <action name="deletecity" class="grp1.ang.CityJSONAction" method="delete"  >
+            <result type="json" />
+        </action>
+
+        <action name="allweather" class="grp1.ang.WeatherJSONAction">
+            <result type="json" />
+        </action>
+        <action name="addweather" class="grp1.ang.WeatherJSONAction" method="create">
+            <result type="json" />
+        </action>
+        <action name="readweather" class="grp1.ang.WeatherJSONAction" method="read" >
+            <result type="json" />
+        </action>
+        <action name="updateweather" class="grp1.ang.WeatherJSONAction" method="update" >
+            <result type="json" />
+        </action>
+        <action name="deleteweather" class="grp1.ang.WeatherJSONAction" method="delete"  >
             <result type="json" />
         </action>
 
