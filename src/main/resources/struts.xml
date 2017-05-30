@@ -19,7 +19,7 @@
 
         <action name="citiesIndex" class="grp1.CityAction">
             <result name="input" type="redirectAction">citiesIndex</result>
-            <result>/WEB-INF/jsp/citiesIndex.jsp</result>
+            <result>city.jsp</result>
         </action>
 
         <action name="disastersIndex" class="grp1.DisasterAction">
@@ -148,27 +148,38 @@
             <!-- NO CONFIGURATION FOR RESULT NONE -->
         </action>
 
-        <action name="addproduct" class="grp1.ang.ProductJSONAction" method="getFileName">
+
+        <action name="allnews" class="grp1.ang.NewsJSONAction">
+            <result type="json" />
+        </action>
+        <action name="addnews" class="grp1.ang.NewsJSONAction" method="create">
+            <result type="json" />
+        </action>
+        <action name="readnews" class="grp1.ang.NewsJSONAction" method="read" >
+            <result type="json" />
+        </action>
+        <action name="updatenews" class="grp1.ang.NewsJSONAction" method="update" >
+            <result type="json" />
+        </action>
+        <action name="deletenews" class="grp1.ang.NewsJSONAction" method="delete"  >
             <result type="json" />
         </action>
 
-        <action name="readproducts" class="grp1.ang.ProductJSONAction">
+
+        <action name="allcity" class="grp1.ang.CityJSONAction">
             <result type="json" />
         </action>
-
-        <action name="readoneproducts" class="grp1.ang.ProductSingleFetch" >
+        <action name="addcity" class="grp1.ang.CityJSONAction" method="create">
             <result type="json" />
-
         </action>
-
-        <action name="updateproducts" class="grp1.ang.ProductSingleFetch" method="updateProductData" >
+        <action name="readcity" class="grp1.ang.CityJSONAction" method="read" >
             <result type="json" />
-
         </action>
-
-        <action name="deleteproduct" class="grp1.ang.ProductDelete"  >
+        <action name="updatecity" class="grp1.ang.CityJSONAction" method="update" >
             <result type="json" />
-
+        </action>
+        <action name="deletecity" class="grp1.ang.CityJSONAction" method="delete"  >
+            <result type="json" />
         </action>
 
     </package>

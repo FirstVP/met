@@ -18,13 +18,13 @@
 </s:form> --%>
 
 
-<div class="container" ng-app="myApp" ng-controller="productsCtrl">
+<div class="container" ng-app="myApp" ng-controller="newssCtrl">
     <div class="row">
         <div class="col s12">
             <h4>News</h4>
-            <div id="modal-product-form" class="modal">
+            <div id="modal-news-form" class="modal">
                 <div class="modal-content">
-                    <h4 id="modal-product-title">Create New Product</h4>
+                    <h4 id="modal-news-title">Create New News</h4>
                     <div class="row">
 
 
@@ -36,13 +36,13 @@
                         <label for="saveNews_news_content"> Content:</label>
                         <s:textarea ng-model="content" class="form-control" theme="simple" name="news.content" value="%{news.content}" label="%{getText('label.content')}" size="20"/>
                         <label for="saveNews_news_date"> Date:</label>
-                        <s:textfield ng-model="date" type="date" class="form-control" theme="simple" name="news.date" value="%{news.date.toString()}" label="%{getText('label.date')}" size="20" />
+                        <s:textfield ng-model="date"  type="date" class="form-control" theme="simple" name="news.date" value="%{news.date.toString()}" label="%{getText('label.date')}" size="20" />
 
 
                         <div class="input-field col s12">
-                            <a id="btn-create-product" class="waves-effect waves-light btn margin-bottom-1em" ng-click="createProduct()"><i class="material-icons left">add</i>Create</a>
+                            <a id="btn-create-news" class="waves-effect waves-light btn margin-bottom-1em" ng-click="createNews()"><i class="material-icons left">add</i>Create</a>
 
-                            <a id="btn-update-product" class="waves-effect waves-light btn margin-bottom-1em" ng-click="updateProduct()"><i class="material-icons left">edit</i>Save Changes</a>
+                            <a id="btn-update-news" class="waves-effect waves-light btn margin-bottom-1em" ng-click="updateNews()"><i class="material-icons left">edit</i>Save Changes</a>
 
                             <a class="modal-action modal-close waves-effect waves-light btn margin-bottom-1em"><i class="material-icons left">close</i>Close</a>
                         </div>
@@ -71,14 +71,14 @@
                     <td class="width-30-pct" >{{ d.date }}</td>
                     <td>
                         <a ng-click="readOne(d.newsId)" class="waves-effect waves-light btn margin-bottom-1em"><i class="material-icons left">edit</i>Edit</a>
-                        <a ng-click="deleteProduct(d.newsId)" class="waves-effect waves-light btn margin-bottom-1em"><i class="material-icons left">delete</i>Delete</a>
+                        <a ng-click="deleteNews(d.newsId)" class="waves-effect waves-light btn margin-bottom-1em"><i class="material-icons left">delete</i>Delete</a>
                     </td>
                 </tr>
                 </tbody>
             </table>
 
             <div class="fixed-action-btn" style="bottom:45px; right:24px;">
-                <a class="waves-effect waves-light btn modal-trigger btn-floating btn-large red" href="#modal-product-form" ng-click="showCreateForm()"><i class="large material-icons">add</i></a>
+                <a class="waves-effect waves-light btn modal-trigger btn-floating btn-large red" href="#modal-news-form" ng-click="showCreateForm()"><i class="large material-icons">add</i></a>
             </div>
         </div>
     </div>
@@ -91,19 +91,20 @@
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
 <script>
     var app = angular.module('myApp', []);
-    app.controller('productsCtrl', function($scope, $http) {
+
+    app.controller('newssCtrl', function($scope, $http) {
         $scope.showCreateForm = function(){
             // clear form
             $scope.clearForm();
 
             // change modal title
-            $('#modal-product-title').text("Create New Product");
+            $('#modal-news-title').text("Create New News");
 
-            // hide update product button
-            $('#btn-update-product').hide();
+            // hide update news button
+            $('#btn-update-news').hide();
 
-            // show create product button
-            $('#btn-create-product').show();
+            // show create news button
+            $('#btn-create-news').show();
 
         }
         $scope.clearForm = function(){
@@ -112,10 +113,10 @@
             $scope.content = "";
             $scope.date = "";
         }
-        $scope.createProduct = function(){
+        $scope.createNews = function(){
 
             // fields in key-value pairs
-            $http.post('addproduct.action', {
+            $http.post('addnews.action', {
                     'title' : $scope.title,
                     'brief' : $scope.brief,
                     'content': $scope.content,
@@ -125,7 +126,7 @@
                 console.log(data);
 
                 // close modal
-                $('#modal-product-form').closeModal();
+                $('#modal-news-form').closeModal();
 
                 // clear modal content
                 $scope.clearForm();
@@ -135,7 +136,7 @@
             });
         }
         $scope.getAll = function(){
-            $http.get("readproducts.action").success(function(response){
+            $http.get("allnews.action").success(function(response){
 
 
                 $scope.names = response.records;
@@ -147,29 +148,34 @@
         }
         $scope.readOne = function(newsId){
 
-            $('#modal-product-title').text("Edit News");
-            $('#btn-update-product').show();
-            $('#btn-create-product').hide();
+            $('#modal-news-title').text("Edit News");
+            $('#btn-update-news').show();
+            $('#btn-create-news').hide();
 
-            $http.post("readoneproducts.action", {
+            $http.post("readnews.action", {
                 'newsId' : newsId
             })
                 .success(function(data, status, headers, config){
 
-                    $scope.newsId = data['newsData']["newsId"];
-                    $scope.title = data['newsData']["title"];
-                    $scope.brief = data['newsData']["brief"];
-                    $scope.content = data['newsData']["content"];
-                    $scope.date = new Date(data['newsData']["date"]);
+                    $scope.newsId = data['data']["newsId"];
+                    $scope.title = data['data']["title"];
+                    $scope.brief = data['data']["brief"];
+                    $scope.content = data['data']["content"];
+                    var dt = new Date(data['data']["date"]);
+                  //  var parts = dt.match(/(\d+)/g);
+                  //  console.log(dt);
+                    console.log(dt);
+                    $scope.date = new Date(dt);
 
-                    $('#modal-product-form').openModal();
+                    $('#modal-news-form').openModal();
                 })
                 .error(function(data, status, headers, config){
                     Materialize.toast('Unable to retrieve record.', 4000);
                 });
         }
-        $scope.updateProduct = function(){
-            $http.post('updateproducts.action', {
+        $scope.updateNews = function(){
+
+            $http.post('updatenews.action', {
                 'newsId' : $scope.newsId,
                 'title' : $scope.title,
                 'brief' : $scope.brief,
@@ -177,17 +183,17 @@
                 'date' : $scope.date
             })
                 .success(function (data, status, headers, config){
-                    $('#modal-product-form').closeModal();
+                    $('#modal-news-form').closeModal();
                     $scope.clearForm();
                     $scope.getAll();
                 });
         }
-        $scope.deleteProduct = function(newsId){
+        $scope.deleteNews = function(newsId){
 
             // ask the user if he is sure to delete the record
             if(confirm("Are you sure?")){
-                // post the id of product to be deleted
-                $http.post("deleteproduct.action", {
+                // post the id of news to be deleted
+                $http.post("deletenews.action", {
                     'newsId' : newsId
                 }).success(function (data, status, headers, config){
                     $scope.getAll();
