@@ -14,7 +14,7 @@
         <default-action-ref name="index" />
 
         <action name="index" class="grp1.IndexAction">
-            <result>/WEB-INF/jsp/index.jsp</result>
+            <result>index.jsp</result>
         </action>
 
         <action name="citiesIndex" class="grp1.CityAction">

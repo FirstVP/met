@@ -56,7 +56,7 @@
         </div>
 
 
-        <div class="container-fluid">
+        <div class=" container-fluid">
             <div class="row">
                 <div class="col-sm-3 col-lg-2">
                     <nav class="navbar navbar-default navbar-fixed-side">
@@ -82,81 +82,82 @@
                                             <s:param name="hasProtection">false</s:param>
                                         </s:url>
 
-                                        <li><a href="<s:property value="#url"/>">Get latest news (PDF)</a></li>
+                                        <li><a class="waves-effect waves-light btn margin-bottom-1em grey white-text" href="<s:property value="#url"/>">Get latest news (PDF)</a></li>
 
                                         <s:url var="url" action="viewPDF" escapeAmp="false">
                                             <s:param name="type">News</s:param>
                                             <s:param name="hasProtection">true</s:param>
                                         </s:url>
-                                        <li><a href="<s:property value="#url"/>">Get latest news (Protected PDF)</a></li>
+                                        <li><a class="waves-effect waves-light btn margin-bottom-1em grey white-text" href="<s:property value="#url"/>">Get latest news (Protected PDF)</a></li>
 
                                         <s:url var="url" action="viewXLS">
                                             <s:param name="type">News</s:param>
                                         </s:url>
-                                        <li><a href="<s:property value="#url"/>">Get latest news (XLS)</a></li>
+                                        <li><a class="waves-effect waves-light btn margin-bottom-1em grey white-text" href="<s:property value="#url"/>">Get latest news (XLS)</a></li>
 
                                         <s:url var="url" action="viewCSV">
                                             <s:param name="type">News</s:param>
                                         </s:url>
-                                        <li><a href="<s:property value="#url"/>">Get latest news (CSV)</a></li>
+                                        <li><a class="waves-effect waves-light btn margin-bottom-1em grey white-text" href="<s:property value="#url"/>">Get latest news (CSV)</a></li>
                                         </s:if>
                                     </ul></li>
                                     <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Cities <b class="caret"></b></a><ul class="dropdown-menu">
                                         <s:url action="citiesIndex" var="citiesUrl"></s:url>
-                                        <li><a href="<s:property value="#citiesUrl"/>">Index</a></li>
+                                        <li><a class="waves-effect waves-light btn margin-bottom-1em grey white-text" href="<s:property value="#citiesUrl"/>">Index cities</a></li>
                                         <s:if test='#session.role_id != null'>
                                         <s:url var="url" action="viewPDF" escapeAmp="false">
                                             <s:param name="type">Cities</s:param>
                                             <s:param name="hasProtection">false</s:param>
                                         </s:url>
-                                        <li><a href="<s:property value="#url"/>">Get cities (PDF)</a></li>
+                                        <li><a class="waves-effect waves-light btn margin-bottom-1em grey white-text" href="<s:property value="#url"/>">Get cities (PDF)</a></li>
 
                                         <s:url var="url" action="viewPDF" escapeAmp="false">
                                             <s:param name="type">Cities</s:param>
                                             <s:param name="hasProtection">true</s:param>
                                         </s:url>
-                                        <li><a href="<s:property value="#url"/>">Get cities (Protected PDF)</a></li>
+                                        <li><a class="waves-effect waves-light btn margin-bottom-1em grey white-text" href="<s:property value="#url"/>">Get cities (Protected PDF)</a></li>
 
                                         <s:url var="url" action="viewXLS">
                                             <s:param name="type">Cities</s:param>
                                         </s:url>
-                                        <li><a href="<s:property value="#url"/>">Get cities (XLS)</a></li>
+                                        <li><a class="waves-effect waves-light btn margin-bottom-1em grey white-text" href="<s:property value="#url"/>">Get cities (XLS)</a></li>
 
                                         <s:url var="url" action="viewCSV">
                                             <s:param name="type">Cities</s:param>
                                         </s:url>
-                                        <li><a href="<s:property value="#url"/>">Get cities (CSV)</a></li>
+                                        <li><a class="waves-effect waves-light btn margin-bottom-1em grey white-text" href="<s:property value="#url"/>">Get cities (CSV)</a></li>
                                         </s:if>
-                                    </ul></li>
-                                    <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Disasters <b class="caret"></b></a><ul class="dropdown-menu">
+
+
                                         <s:url action="disastersIndex" var="disastersUrl"></s:url>
-                                        <li><a href="<s:property value="#disastersUrl"/>">Index</a></li>
-                                    </ul></li>
-                                        <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Accidents <b class="caret"></b></a><ul class="dropdown-menu">
+                                        <li><a class="waves-effect waves-light btn margin-bottom-1em grey white-text" href="<s:property value="#disastersUrl"/>">Index disasters</a></li>
+
+
                                             <s:url action="accidentsIndex" var="accidentsUrl"></s:url>
-                                            <li><a href="<s:property value="#accidentsUrl"/>">Index</a></li>
+                                            <br />
+                                            <li><a align="left" class="waves-effect waves-light btn margin-bottom-1em grey white-text" href="<s:property value="#accidentsUrl"/>">Index accidents</a></li>
                                             <s:if test='#session.role_id != null'>
                                             <s:url var="url" action="viewPDF" escapeAmp="false">
                                                 <s:param name="type">Accidents</s:param>
                                                 <s:param name="hasProtection">false</s:param>
                                             </s:url>
-                                            <li><a href="<s:property value="#url"/>">Get latest accidents (PDF)</a></li>
+                                            <li><a class="waves-effect waves-light btn margin-bottom-1em grey white-text" href="<s:property value="#url"/>">Get latest accidents (PDF)</a></li>
 
                                             <s:url var="url" action="viewPDF" escapeAmp="false">
                                                 <s:param name="type">Accidents</s:param>
                                                 <s:param name="hasProtection">true</s:param>
                                             </s:url>
-                                            <li><a href="<s:property value="#url"/>">Get latest accidents (Protected PDF)</a></li>
+                                            <li><a class="waves-effect waves-light btn margin-bottom-1em grey white-text" href="<s:property value="#url"/>">Get latest accidents (Protected PDF)</a></li>
 
                                             <s:url var="url" action="viewXLS">
                                                 <s:param name="type">Accidents</s:param>
                                             </s:url>
-                                            <li><a href="<s:property value="#url"/>">Get latest accidents (XLS)</a></li>
+                                            <li><a class="waves-effect waves-light btn margin-bottom-1em grey white-text" href="<s:property value="#url"/>">Get latest accidents (XLS)</a></li>
 
                                             <s:url var="url" action="viewCSV">
                                                 <s:param name="type">Accidents</s:param>
                                             </s:url>
-                                            <li><a href="<s:property value="#url"/>">Get latest accidents (CSV)</a></li>
+                                            <li><a class="waves-effect waves-light btn margin-bottom-1em grey white-text" href="<s:property value="#url"/>">Get latest accidents (CSV)</a></li>
                                                 </s:if>
                                         </ul></li>
 

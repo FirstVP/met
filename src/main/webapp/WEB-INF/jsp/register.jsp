@@ -10,6 +10,10 @@
 <html>
 <head>
     <title>Registration</title>
+
+    <link rel="stylesheet" href="css/materialize.min.css" />
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
 </head>
 <body>
 <h2>Sign up</h2>
