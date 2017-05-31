@@ -18,13 +18,15 @@
 </s:form> --%>
 
 
+<button id="left">Left</button> <button id="right">Right</button>
+
 <div class="container" ng-app="myAppDisaster" ng-controller="disastersCtrl">
 
 
 
     <div class="row">
         <div class="col s12">
-            <h4>Disasters</h4>
+            <h4 class="mvb">Disasters</h4>
             <div id="modal-disaster-form" class="modal">
                 <div class="modal-content">
                     <h4 id="modal-disaster-title">Create New Disaster</h4>
@@ -183,6 +185,13 @@
     $(document).ready(function(){
         // initialize modal
         $('.modal-trigger').leanModal();
+        $("#right").click(function(){
+            $(".mvb").animate({"width": "+=50px"}, "slow");
+        });
+
+        $("#left").click(function(){
+            $(".mvb").animate({"width": "-=50px"}, "slow");
+        });
     });
     // jquery codes will be here
 

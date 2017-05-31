@@ -187,7 +187,7 @@
         <div id="footer" class="clearfix">
             <nav class="navbar navbar-inverse navbar-fixed-bottom">
                 <div class="container-fluid">
-                    <center style="color:white">© Trukhanovich, Lomako, Subachus (451003, BSUIR 2017)</center>
+                    <center class="mvb" style="color:white">© Trukhanovich, Lomako, Subachus (451003, BSUIR 2017)</center>
                 </div>
             </nav>
             </div>
