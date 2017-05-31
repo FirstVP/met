@@ -41,3 +41,6 @@
     border-bottom-color: transparent;
 }
 
+.remove-all-styles {
+    all: revert;
+}

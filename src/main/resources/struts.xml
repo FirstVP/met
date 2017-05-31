@@ -24,7 +24,7 @@
 
         <action name="disastersIndex" class="grp1.DisasterAction">
             <result name="input" type="redirectAction">disastersIndex</result>
-            <result>/WEB-INF/jsp/disastersIndex.jsp</result>
+            <result>disaster.jsp</result>
         </action>
 
         <action name="accidentsIndex" class="grp1.AccidentAction">
@@ -195,6 +195,22 @@
             <result type="json" />
         </action>
         <action name="deleteweather" class="grp1.ang.WeatherJSONAction" method="delete"  >
+            <result type="json" />
+        </action>
+
+        <action name="alldisaster" class="grp1.ang.DisasterJSONAction">
+            <result type="json" />
+        </action>
+        <action name="adddisaster" class="grp1.ang.DisasterJSONAction" method="create">
+            <result type="json" />
+        </action>
+        <action name="readdisaster" class="grp1.ang.DisasterJSONAction" method="read" >
+            <result type="json" />
+        </action>
+        <action name="updatedisaster" class="grp1.ang.DisasterJSONAction" method="update" >
+            <result type="json" />
+        </action>
+        <action name="deletedisaster" class="grp1.ang.DisasterJSONAction" method="delete"  >
             <result type="json" />
         </action>
 
